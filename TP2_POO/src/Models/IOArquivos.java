@@ -4,7 +4,9 @@
  */
 package Models;
 
+import Controller.ControladorProduto;
 import Controller.ControladorUsuario;
+import Controller.ControladorVenda;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -61,29 +63,6 @@ public class IOArquivos {
             JOptionPane.showMessageDialog(null, "Erro ao salvar o arquivo de configurações!");
         }catch(IOException ex){
             JOptionPane.showMessageDialog(null, "Erro ao salvar o arquivo de configurações!");
-        }
-    }
-    
-    
-    public ArrayList<Venda> lerVendas(){
-        try{
-            ControladorUsuario control = new ControladorUsuario();
-            FileInputStream fis = new FileInputStream(control.getConfigClientes());
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            
-            int contVendas = ois.readInt();
-            ArrayList<Venda> vendas = new ArrayList<>();
-            
-            for(int i = 0; i < contVendas; i++){
-                vendas.add((Venda) ois.readObject());
-            }
-            
-            return vendas;
-            
-        }catch(IOException ex){
-            return null;
-        }catch(ClassNotFoundException ex){
-            return null;
         }
     }
     
@@ -211,4 +190,240 @@ public class IOArquivos {
         }
         
     }
+    
+    public ArrayList<Produto> lerProdutos(){
+        try{
+            ControladorProduto control = new ControladorProduto();
+            FileInputStream fis = new FileInputStream(control.getConfigProduto());
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            
+            int contProdutos = ois.readInt();
+            ArrayList<Produto> produtos = new ArrayList<>();
+            
+            for(int i = 0; i < contProdutos; i++){
+                produtos.add((Produto) ois.readObject());
+            }
+            
+            return produtos;
+        } catch(IOException ex){
+            return null;
+        } catch(ClassNotFoundException ex){
+            return null;
+        }
+    }
+    
+    public void escreverProduto(Produto produto){
+        try{
+            ControladorProduto control = new ControladorProduto();
+            File arquivoProduto = new File(control.getConfigProduto());
+            ArrayList<Produto> produtos;
+            produtos = lerProdutos();
+            
+            int contProdutos;
+            
+            if(arquivoProduto.exists() == false) arquivoProduto.createNewFile();
+             
+            FileOutputStream fos = new FileOutputStream(arquivoProduto);
+            ObjectOutputStream ous = new ObjectOutputStream(fos);
+            
+            
+            
+            if(produtos != null){
+                produtos.add(produto);
+                contProdutos = produtos.size();
+                ous.writeInt(contProdutos);
+                for(int i = 0;i<contProdutos;i++){
+                    ous.writeObject(produtos.get(i));
+                }
+            }else{
+                ous.writeInt(1);
+                ous.writeObject(produto);
+            }
+            ous.close();
+            fos.close();
+            JOptionPane.showMessageDialog(null, "Produto Cadastrado Com Sucesso!!");
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao abrir o arquivo de Produtos");
+        } catch (IOException ex) {
+            Logger.getLogger(IOArquivos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public ArrayList<Venda> lerVendas(){
+        try{
+            ControladorVenda control = new ControladorVenda();
+            FileInputStream fis = new FileInputStream(control.getConfigVenda());
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            
+            int contVendas = ois.readInt();
+            ArrayList<Venda> vendas = new ArrayList<>();
+            
+            for(int i = 0; i < contVendas; i++){
+                vendas.add((Venda) ois.readObject());
+            }
+            
+            return vendas;
+            
+        }catch(IOException ex){
+            return null;
+        }catch(ClassNotFoundException ex){
+            return null;
+        }
+    }
+    
+    public void escreverVendas(Venda venda){
+        try{
+            ControladorVenda control = new ControladorVenda();
+            File arquivoVenda = new File(control.getConfigVenda());
+            ArrayList<Venda> vendas;
+            vendas = lerVendas();
+            
+            int contVendas;
+            
+            if(arquivoVenda.exists() == false) arquivoVenda.createNewFile();
+             
+            FileOutputStream fos = new FileOutputStream(arquivoVenda);
+            ObjectOutputStream ous = new ObjectOutputStream(fos);
+            
+            
+            
+            if(vendas != null){
+                vendas.add(venda);
+                contVendas = vendas.size();
+                ous.writeInt(contVendas);
+                for(int i = 0;i<contVendas;i++){
+                    ous.writeObject(vendas.get(i));
+                }
+            }else{
+                ous.writeInt(1);
+                ous.writeObject(venda);
+            }
+            ous.close();
+            fos.close();
+            JOptionPane.showMessageDialog(null, "Venda Cadastrada Com Sucesso!!");
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao abrir o arquivo de Vendas");
+        } catch (IOException ex) {
+            Logger.getLogger(IOArquivos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public ArrayList<Fabricante> lerFabricantes(){
+        try{
+            ControladorProduto control = new ControladorProduto();
+            FileInputStream fis = new FileInputStream(control.getConfigFabricantes());
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            
+            int contFabricantes = ois.readInt();
+            ArrayList<Fabricante> fabricantes = new ArrayList<>();
+            
+            for(int i = 0; i < contFabricantes; i++){
+                fabricantes.add((Fabricante) ois.readObject());
+            }
+            
+            return fabricantes;
+            
+        }catch(IOException ex){
+            return null;
+        }catch(ClassNotFoundException ex){
+            return null;
+        }
+    }
+    
+    public void escreverFabricante(Fabricante fabricante){
+        try{
+            ControladorProduto control = new ControladorProduto();
+            File arquivoFabricante = new File(control.getConfigFabricantes());
+            ArrayList<Fabricante> fabricantes;
+            fabricantes = lerFabricantes();
+            
+            int contFabricantes;
+            
+            if(arquivoFabricante.exists() == false) arquivoFabricante.createNewFile();
+             
+            FileOutputStream fos = new FileOutputStream(arquivoFabricante);
+            ObjectOutputStream ous = new ObjectOutputStream(fos);
+            
+            
+            
+            if(fabricantes != null){
+                fabricantes.add(fabricante);
+                contFabricantes = fabricantes.size();
+                ous.writeInt(contFabricantes);
+                for(int i = 0;i<contFabricantes;i++){
+                    ous.writeObject(fabricantes.get(i));
+                }
+            }else{
+                ous.writeInt(1);
+                ous.writeObject(fabricante);
+            }
+            ous.close();
+            fos.close();
+            JOptionPane.showMessageDialog(null, "Fabricante Cadastrada Com Sucesso!!");
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao abrir o arquivo de Fabricante");
+        } catch (IOException ex) {
+            Logger.getLogger(IOArquivos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public ArrayList<Transportadora> lerTransportadora(){
+        try{
+            ControladorVenda control = new ControladorVenda();
+            FileInputStream fis = new FileInputStream(control.getConfigTransportadora());
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            
+            int contTransportadoras = ois.readInt();
+            ArrayList<Transportadora> transportadoras = new ArrayList<>();
+            
+            for(int i = 0; i < contTransportadoras; i++){
+                transportadoras.add((Transportadora) ois.readObject());
+            }
+            
+            return transportadoras;
+            
+        }catch(IOException ex){
+            return null;
+        }catch(ClassNotFoundException ex){
+            return null;
+        }
+    }
+    
+    public void escreverTransportadora(Transportadora transportadora){
+        try{
+            ControladorVenda control = new ControladorVenda();
+            File arquivoTransportadora = new File(control.getConfigTransportadora());
+            ArrayList<Transportadora> transportadoras;
+            transportadoras = lerTransportadora();
+            
+            int contTransportadoras;
+            
+            if(arquivoTransportadora.exists() == false) arquivoTransportadora.createNewFile();
+             
+            FileOutputStream fos = new FileOutputStream(arquivoTransportadora);
+            ObjectOutputStream ous = new ObjectOutputStream(fos);
+            
+            if(transportadoras != null){
+                transportadoras.add(transportadora);
+                contTransportadoras = transportadoras.size();
+                ous.writeInt(contTransportadoras);
+                for(int i = 0;i<contTransportadoras;i++){
+                    ous.writeObject(transportadoras.get(i));
+                }
+            }else{
+                ous.writeInt(1);
+                ous.writeObject(transportadora);
+            }
+            ous.close();
+            fos.close();
+            JOptionPane.showMessageDialog(null, "Transportadora Cadastrada Com Sucesso!!");
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao abrir o arquivo de Transportadoras");
+        } catch (IOException ex) {
+            Logger.getLogger(IOArquivos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
+    
+    
 }

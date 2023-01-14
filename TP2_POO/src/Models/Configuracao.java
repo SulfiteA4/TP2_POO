@@ -17,12 +17,12 @@ public class Configuracao {
     private String arquivoGerentes;
     
     public Configuracao(){
-        this.arquivoVendas = "vendas.arq";
-        this.arquivoProdutos = "produtos.arq";
-        this.arquivoFabricantes = "fabricantes.arq";
-        this.arquivoTransportadoras = "transportadoras.arq";
-        this.arquivoClientes = "clientes.arq";
-        this.arquivoGerentes = "gerentes.arq";
+        this.arquivoVendas = "vendas.arq";//ja foi
+        this.arquivoProdutos = "produtos.arq"; //ja foi
+        this.arquivoFabricantes = "fabricantes.arq";//ja foi
+        this.arquivoTransportadoras = "transportadoras.arq";//ja foi
+        this.arquivoClientes = "clientes.arq";//ja foi
+        this.arquivoGerentes = "gerentes.arq";//ja foi
     }
 
     public String getArquivoVendas() {
