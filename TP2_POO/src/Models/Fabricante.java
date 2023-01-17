@@ -4,11 +4,13 @@
  */
 package Models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Lucas
  */
-public class Fabricante {
+public class Fabricante implements Serializable{
     private int codigo;
     private String cnpj;
     private String nome;

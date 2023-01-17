@@ -5,6 +5,11 @@
 package Controller;
 
 import Models.ComercioEletronico;
+import Models.IOArquivos;
+import Models.Movel;
+import Models.Produto;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -20,4 +25,43 @@ public class ControladorProduto {
     public String getConfigFabricantes(){
         return COM.getConfiguracoes().getArquivoFabricantes();
     }
+    
+    public void addProduto(Produto produto){
+        IOArquivos arq = new IOArquivos();
+        arq.escreverProduto(produto);
+    }
+    
+    
+    public Object[][] relatorioTodosProdutos(){
+        IOArquivos arq = new IOArquivos();
+        int cont = 0;
+        Object[][] linha = new Object[arq.lerProdutos().size()][7];
+        
+        //Padrão Iterator!
+        Iterator<Produto> iterator = arq.lerProdutos().iterator();
+        
+        while (iterator.hasNext()) {
+            
+            Produto produto = iterator.next();
+            
+            linha[cont][0] = produto.getCodigo();
+            linha[cont][1] = produto.getNome();
+            linha[cont][2] = produto.getDescricao();
+            linha[cont][3] = produto.getDataFabricacao();
+            linha[cont][4] = produto.getValor();
+            linha[cont][5] = produto.getFabricante();
+            linha[cont][6] = produto.isDisponivel();
+            cont++;
+        }
+        
+        return(linha);
+    }
+
+    
+    
+    
+    
+    
+    
+    
 }

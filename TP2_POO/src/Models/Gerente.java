@@ -4,13 +4,14 @@
  */
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author Lucas
  */
-public class Gerente extends Usuario{
+public class Gerente extends Usuario implements Serializable{
     protected float salario;
     protected String pis;
     protected LocalDate dataAdmissao;

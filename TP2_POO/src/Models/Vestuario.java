@@ -4,13 +4,14 @@
  */
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author Lucas
  */
-public class Vestuario extends Produto{
+public class Vestuario extends Produto implements Serializable{
     public Vestuario(int codigo, String nome, String descricao, LocalDate dataFabricacao, float valor, Fabricante fabricante, boolean disponivel) {
         super(codigo, nome, descricao, dataFabricacao, valor, fabricante, disponivel);
     }

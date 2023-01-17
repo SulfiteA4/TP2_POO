@@ -4,6 +4,14 @@
  */
 package Interfaces;
 
+import Controller.ControladorProduto;
+import Models.ComercioEletronico;
+import Models.Eletrodomestico;
+import Models.Fabricante;
+import Models.IOArquivos;
+import Models.Movel;
+import java.time.LocalDate;
+
 /**
  *
  * @author Martines
@@ -323,6 +331,47 @@ public class IUPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                IOArquivos arq = new IOArquivos();
+                ComercioEletronico COM = new ComercioEletronico();
+                COM.setConfiguracoes(arq.lerConfig());
+//                LocalDate data = LocalDate.parse("2022-07-21");
+//                LocalDate data1 = LocalDate.parse("2021-09-12");
+//                LocalDate data2 = LocalDate.parse("2021-08-27");
+//                LocalDate data3 = LocalDate.parse("2021-09-27");
+//                
+//                Fabricante fab1 = new Fabricante(1, "123456789098", "Rafael Company", "fabricante de moveis", "Rafal@gmail.com", "14998765554", "Avenida Brasil, 1222");
+//                Movel mv1 = new Movel(1, "Cadeira gamer", "Uma cadeira com RGB", data, 723, fab1, true);
+//                
+//                Movel mv2 = new Movel(2, "Mesa gamer", "Uma Mesa com RGB", data1, 1000, fab1, true);
+//                
+//                Movel mv3 = new Movel(3, "Armario gamer", "Um Armario com RGB", data2, 1200, fab1, true);
+//                
+//                Eletrodomestico elet = new Eletrodomestico(4, "Microondas", "Serve pra esquentar comidas", data3, 680, fab1, true);
+//                
+                ControladorProduto ctrlProd = new ControladorProduto();
+                
+//                ctrlProd.addProduto(mv1);
+//                ctrlProd.addProduto(mv2);
+//                ctrlProd.addProduto(mv3);
+//                ctrlProd.addProduto(elet);
+                Object[][] linha = ctrlProd.relatorioTodosProdutos();
+                
+                for(int cont = 0; cont < linha.length; cont++){
+                    System.out.println(linha[cont][0]);
+                    System.out.println(linha[cont][1]);
+                    System.out.println(linha[cont][2]);
+                    System.out.println(linha[cont][3]);
+                    System.out.println(linha[cont][4]);
+                    System.out.println(linha[cont][5]);
+                    System.out.println(linha[cont][6]);
+                
+                }
+                
+                
+                
+                
+                
+                
                 new IUPrincipal().setVisible(true);
             }
         });

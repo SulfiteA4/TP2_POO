@@ -4,11 +4,13 @@
  */
 package Models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Lucas
  */
-public class CartaoCredito extends Pagamento{
+public class CartaoCredito extends Pagamento implements Serializable{
     private String nome;
     private String bandeira;
     private String numero;
