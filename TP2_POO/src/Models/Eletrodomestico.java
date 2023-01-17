@@ -4,13 +4,14 @@
  */
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author Lucas
  */
-public class Eletrodomestico extends Produto{
+public class Eletrodomestico extends Produto implements Serializable{
     
     
     public Eletrodomestico(int codigo, String nome, String descricao, LocalDate dataFabricacao, float valor, Fabricante fabricante, boolean disponivel) {

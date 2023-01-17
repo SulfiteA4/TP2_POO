@@ -4,13 +4,14 @@
  */
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author Lucas
  */
-public class Cli_Ouro extends Cliente{
+public class Cli_Ouro extends Cliente implements Serializable{
 
     public Cli_Ouro(LocalDate dataCadastro, int codigo, String nome, String cpf, String rg, LocalDate dataNascimento, String endereco, String cep, String email) {
         super(dataCadastro, codigo, nome, cpf, rg, dataNascimento, endereco, cep, email);

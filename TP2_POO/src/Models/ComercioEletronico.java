@@ -4,6 +4,7 @@
  */
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -11,14 +12,14 @@ import java.util.ArrayList;
  *
  * @author Lucas
  */
-public class ComercioEletronico {
+public class ComercioEletronico implements Serializable{
     private String nomeLoja;
     private ArrayList<Venda> vendas = new ArrayList();
-    private ArrayList<Produto> produtos = new ArrayList();;
-    private ArrayList<Fabricante> fabricantes = new ArrayList();;
-    private ArrayList<Transportadora> transportadoras = new ArrayList();;
-    private ArrayList<Cliente> clientes = new ArrayList();;
-    private ArrayList<Gerente> gerentes = new ArrayList();;
+    private ArrayList<Produto> produtos = new ArrayList();
+    private ArrayList<Fabricante> fabricantes = new ArrayList();
+    private ArrayList<Transportadora> transportadoras = new ArrayList();
+    private ArrayList<Cliente> clientes = new ArrayList();
+    private ArrayList<Gerente> gerentes = new ArrayList();
     private Configuracao configuracoes;
 
     public ComercioEletronico() {

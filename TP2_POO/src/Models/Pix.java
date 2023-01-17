@@ -4,11 +4,13 @@
  */
 package Models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Lucas
  */
-public class Pix extends Pagamento{
+public class Pix extends Pagamento implements Serializable{
     private String codigoPix;
 
     public Pix(String codigoPix, int codigoNota) {

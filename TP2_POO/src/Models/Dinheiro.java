@@ -4,11 +4,13 @@
  */
 package Models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Lucas
  */
-public class Dinheiro extends Pagamento{
+public class Dinheiro extends Pagamento implements Serializable{
 
     public Dinheiro(int codigoNota) {
         super(codigoNota);

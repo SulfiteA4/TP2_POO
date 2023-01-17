@@ -4,11 +4,13 @@
  */
 package Models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Lucas
  */
-public class Configuracao {
+public class Configuracao implements Serializable{
     private String arquivoVendas;
     private String arquivoProdutos;
     private String arquivoFabricantes;

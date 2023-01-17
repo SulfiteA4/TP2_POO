@@ -4,6 +4,7 @@
  */
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Lucas
  */
-public class Venda {
+public class Venda implements Serializable{
     private int codigo;
     private Cliente cliente;
     private Gerente gerente;
