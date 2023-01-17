@@ -394,24 +394,24 @@ public class IUPrincipal extends javax.swing.JFrame {
 //                
 //                Eletrodomestico elet = new Eletrodomestico(4, "Microondas", "Serve pra esquentar comidas", data3, 680, fab1, true);
 //                
-                ControladorProduto ctrlProd = new ControladorProduto();
+//                ControladorProduto ctrlProd = new ControladorProduto();
                 
 //                ctrlProd.addProduto(mv1);
 //                ctrlProd.addProduto(mv2);
 //                ctrlProd.addProduto(mv3);
 //                ctrlProd.addProduto(elet);
-                Object[][] linha = ctrlProd.relatorioTodosProdutos();
+//                Object[][] linha = ctrlProd.relatorioTodosProdutos();
+//                
+//                for(int cont = 0; cont < linha.length; cont++){
+//                    System.out.println(linha[cont][0]);
+//                    System.out.println(linha[cont][1]);
+//                    System.out.println(linha[cont][2]);
+//                    System.out.println(linha[cont][3]);
+//                    System.out.println(linha[cont][4]);
+//                    System.out.println(linha[cont][5]);
+//                    System.out.println(linha[cont][6]);
                 
-                for(int cont = 0; cont < linha.length; cont++){
-                    System.out.println(linha[cont][0]);
-                    System.out.println(linha[cont][1]);
-                    System.out.println(linha[cont][2]);
-                    System.out.println(linha[cont][3]);
-                    System.out.println(linha[cont][4]);
-                    System.out.println(linha[cont][5]);
-                    System.out.println(linha[cont][6]);
-                
-                }
+//                }
                 
                 
                 
