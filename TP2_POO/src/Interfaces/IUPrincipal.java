@@ -339,7 +339,9 @@ public class IUPrincipal extends javax.swing.JFrame {
 //                LocalDate data2 = LocalDate.parse("2021-08-27");
 //                LocalDate data3 = LocalDate.parse("2021-09-27");
 //                
-//                Fabricante fab1 = new Fabricante(1, "123456789098", "Rafael Company", "fabricante de moveis", "Rafal@gmail.com", "14998765554", "Avenida Brasil, 1222");
+                //Fabricante fab1 = new Fabricante(1, "123456789098", "Rafael Company", "fabricante de moveis", "Rafal@gmail.com", "14998765554", "Avenida Brasil, 1222");
+                //Fabricante fab2 = new Fabricante(2, "123456789098", "Rafael Company", "fabricante de moveis", "Rafal@gmail.com", "14998765554", "Avenida Brasil, 1222");
+
 //                Movel mv1 = new Movel(1, "Cadeira gamer", "Uma cadeira com RGB", data, 723, fab1, true);
 //                
 //                Movel mv2 = new Movel(2, "Mesa gamer", "Uma Mesa com RGB", data1, 1000, fab1, true);
@@ -354,9 +356,10 @@ public class IUPrincipal extends javax.swing.JFrame {
 //                ctrlProd.addProduto(mv2);
 //                ctrlProd.addProduto(mv3);
 //                ctrlProd.addProduto(elet);
+                  //ctrlProd.addFabricante(fab2);
                 Object[][] linha = ctrlProd.relatorioTodosProdutos();
                 
-                for(int cont = 0; cont < linha.length; cont++){
+               /* for(int cont = 0; cont < linha.length; cont++){
                     System.out.println(linha[cont][0]);
                     System.out.println(linha[cont][1]);
                     System.out.println(linha[cont][2]);
@@ -365,7 +368,7 @@ public class IUPrincipal extends javax.swing.JFrame {
                     System.out.println(linha[cont][5]);
                     System.out.println(linha[cont][6]);
                 
-                }
+                }*/
                 
                 
                 

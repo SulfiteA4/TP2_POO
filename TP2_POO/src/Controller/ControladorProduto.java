@@ -5,11 +5,12 @@
 package Controller;
 
 import Models.ComercioEletronico;
+import Models.Fabricante;
 import Models.IOArquivos;
-import Models.Movel;
 import Models.Produto;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,6 +31,12 @@ public class ControladorProduto {
         IOArquivos arq = new IOArquivos();
         arq.escreverProduto(produto);
     }
+    
+    public void addFabricante(Fabricante fabricante){
+        IOArquivos arq = new IOArquivos(); 
+        arq.escreverFabricante(fabricante);
+    }
+    
     
     
     public Object[][] relatorioTodosProdutos(){
@@ -56,9 +63,81 @@ public class ControladorProduto {
         
         return(linha);
     }
+    
+    public Object[][] relatorioTodosFabricantes(){
+        IOArquivos arq = new IOArquivos();
+        int cont = 0;
+        Object[][] linha = new Object[arq.lerFabricantes().size()][7];
+        
+        //Padrão Iterator!
+        Iterator<Fabricante> iterator = arq.lerFabricantes().iterator();
+        
+        while (iterator.hasNext()) {
+            
+            Fabricante fabricante = iterator.next();
+            
+            linha[cont][0] = fabricante.getCodigo();
+            linha[cont][1] = fabricante.getNome();
+            linha[cont][2] = fabricante.getCnpj();
+            linha[cont][3] = fabricante.getDescricao();
+            linha[cont][4] = fabricante.getEmail();
+            linha[cont][5] = fabricante.getEndereco();
+            linha[cont][6] = fabricante.getTelefone();
+            cont++;
+        }
+        
+        return(linha);
+    }
 
+        
+         public Produto buscaProdutoPorCodigo(int codigo){
+            IOArquivos arq = new IOArquivos(); 
+            //Padrão Iterator!
+            Iterator<Produto> iterator = arq.lerProdutos().iterator();
+        
+            while (iterator.hasNext()) {
+            
+                Produto produto = iterator.next();
+            
+                if(produto.getCodigo() == codigo){
+                    return(produto);
+                }
+        }
+        
+        return(null);
+            
+        }  
     
     
+    
+        public Fabricante buscaFabrincantePorCodigo(int codigo){
+            IOArquivos arq = new IOArquivos(); 
+            //Padrão Iterator!
+            Iterator<Fabricante> iterator = arq.lerFabricantes().iterator();
+        
+            while (iterator.hasNext()) {
+            
+                Fabricante fabricante = iterator.next();
+            
+                if(fabricante.getCodigo() == codigo){
+                    return(fabricante);
+                }
+        }
+        
+        return(null);
+            
+        }  
+    
+    public int retornaQuantidadeFabricantes(){
+        IOArquivos arq = new IOArquivos();
+        int cont;
+        try{
+            cont = arq.lerFabricantes().size();
+        }catch(NullPointerException e){
+            cont = 0;
+        }
+        return(cont);
+    }
     
     
     
