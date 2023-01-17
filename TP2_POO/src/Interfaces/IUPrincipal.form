@@ -44,45 +44,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVendaActionPerformed"/>
               </Events>
             </MenuItem>
-            <Menu class="javax.swing.JMenu" name="MenuCadastroProdutos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastro Produtos "/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="menuItemMoveis">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="M&#xf3;veis"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemMoveisActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuItemEletrodomesticos">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="El&#xe9;trodomesticos"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemEletrodomesticosActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuItemEletronicos">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Eletr&#xf4;nicos"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemEletronicosActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuItemVestuario">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Vestu&#xe1;rio"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVestuarioActionPerformed"/>
-                  </Events>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemCadFabricante">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastro Fabricante"/>
@@ -97,6 +58,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCadTransportadorasActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemCadastroProd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cadastro Produto"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCadastroProdActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
