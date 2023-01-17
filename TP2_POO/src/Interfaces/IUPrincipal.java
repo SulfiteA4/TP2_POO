@@ -31,13 +31,9 @@ public class IUPrincipal extends javax.swing.JFrame {
         menuItemCliente = new javax.swing.JMenuItem();
         menuItemGerente = new javax.swing.JMenuItem();
         menuItemVenda = new javax.swing.JMenuItem();
-        MenuCadastroProdutos = new javax.swing.JMenu();
-        menuItemMoveis = new javax.swing.JMenuItem();
-        menuItemEletrodomesticos = new javax.swing.JMenuItem();
-        menuItemEletronicos = new javax.swing.JMenuItem();
-        menuItemVestuario = new javax.swing.JMenuItem();
         menuItemCadFabricante = new javax.swing.JMenuItem();
         menuItemCadTransportadoras = new javax.swing.JMenuItem();
+        menuItemCadastroProd = new javax.swing.JMenuItem();
         MenuRelatorios = new javax.swing.JMenu();
         MenuRelatorioCliente = new javax.swing.JMenu();
         menuItemTodosClientes = new javax.swing.JMenuItem();
@@ -104,42 +100,6 @@ public class IUPrincipal extends javax.swing.JFrame {
         });
         jMenuCadastros.add(menuItemVenda);
 
-        MenuCadastroProdutos.setText("Cadastro Produtos ");
-
-        menuItemMoveis.setText("Móveis");
-        menuItemMoveis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemMoveisActionPerformed(evt);
-            }
-        });
-        MenuCadastroProdutos.add(menuItemMoveis);
-
-        menuItemEletrodomesticos.setText("Elétrodomesticos");
-        menuItemEletrodomesticos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemEletrodomesticosActionPerformed(evt);
-            }
-        });
-        MenuCadastroProdutos.add(menuItemEletrodomesticos);
-
-        menuItemEletronicos.setText("Eletrônicos");
-        menuItemEletronicos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemEletronicosActionPerformed(evt);
-            }
-        });
-        MenuCadastroProdutos.add(menuItemEletronicos);
-
-        menuItemVestuario.setText("Vestuário");
-        menuItemVestuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVestuarioActionPerformed(evt);
-            }
-        });
-        MenuCadastroProdutos.add(menuItemVestuario);
-
-        jMenuCadastros.add(MenuCadastroProdutos);
-
         menuItemCadFabricante.setText("Cadastro Fabricante");
         menuItemCadFabricante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +115,14 @@ public class IUPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuCadastros.add(menuItemCadTransportadoras);
+
+        menuItemCadastroProd.setText("Cadastro Produto");
+        menuItemCadastroProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastroProdActionPerformed(evt);
+            }
+        });
+        jMenuCadastros.add(menuItemCadastroProd);
 
         jMenuBar1.add(jMenuCadastros);
 
@@ -301,24 +269,6 @@ public class IUPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuCadastrosActionPerformed
 
-    private void menuItemMoveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMoveisActionPerformed
-        new IUCadastroMoveis().setVisible(true); 
-    }//GEN-LAST:event_menuItemMoveisActionPerformed
-
-    private void menuItemEletrodomesticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEletrodomesticosActionPerformed
-        new IUCadastroEletrodomesticos().setVisible(true); 
-    }//GEN-LAST:event_menuItemEletrodomesticosActionPerformed
-
-    private void menuItemEletronicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEletronicosActionPerformed
-        new IUCadastroEletronicos().setVisible(true);
-        
-        
-    }//GEN-LAST:event_menuItemEletronicosActionPerformed
-
-    private void menuItemVestuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVestuarioActionPerformed
-        new IUCadastroVenda().setVisible(true); 
-    }//GEN-LAST:event_menuItemVestuarioActionPerformed
-
     private void menuItemCadFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadFabricanteActionPerformed
         new IUCadastroFabricante().setVisible(true); 
     }//GEN-LAST:event_menuItemCadFabricanteActionPerformed
@@ -338,6 +288,10 @@ public class IUPrincipal extends javax.swing.JFrame {
     private void menuItemFabMaisVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemFabMaisVendaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuItemFabMaisVendaActionPerformed
+
+    private void menuItemCadastroProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastroProdActionPerformed
+      new IUCadastroProduto().setVisible(true); 
+    }//GEN-LAST:event_menuItemCadastroProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,7 +329,6 @@ public class IUPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu MenuCadastroProdutos;
     private javax.swing.JMenu MenuRelatorioCliente;
     private javax.swing.JMenu MenuRelatorioFabricantes;
     private javax.swing.JMenu MenuRelatorioGerente;
@@ -389,14 +342,12 @@ public class IUPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuCadastros;
     private javax.swing.JMenuItem menuItemCadFabricante;
     private javax.swing.JMenuItem menuItemCadTransportadoras;
+    private javax.swing.JMenuItem menuItemCadastroProd;
     private javax.swing.JMenuItem menuItemCliente;
     private javax.swing.JMenuItem menuItemClientesOuro;
-    private javax.swing.JMenuItem menuItemEletrodomesticos;
-    private javax.swing.JMenuItem menuItemEletronicos;
     private javax.swing.JMenuItem menuItemFabMaisLucro;
     private javax.swing.JMenuItem menuItemFabMaisVenda;
     private javax.swing.JMenuItem menuItemGerente;
-    private javax.swing.JMenuItem menuItemMoveis;
     private javax.swing.JMenuItem menuItemProdMaisVend;
     private javax.swing.JMenuItem menuItemProdOrdA;
     private javax.swing.JMenuItem menuItemTodasVendas;
@@ -415,6 +366,5 @@ public class IUPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVendaCartao;
     private javax.swing.JMenuItem menuItemVendaClienteEspeci;
     private javax.swing.JMenuItem menuItemVendasPIX;
-    private javax.swing.JMenuItem menuItemVestuario;
     // End of variables declaration//GEN-END:variables
 }
