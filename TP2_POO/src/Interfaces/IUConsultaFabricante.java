@@ -4,18 +4,40 @@
  */
 package Interfaces;
 
+import Controller.ControladorProduto;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Martines
  */
 public class IUConsultaFabricante extends javax.swing.JDialog {
-
+    
+    private DefaultTableModel model;
+    private ControladorProduto control;
+    private String codFabricante;
     /**
      * Creates new form IUConsultaFabricante
      */
     public IUConsultaFabricante(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        codFabricante = null;
+        control = new ControladorProduto();
+        String columns[] = {"Código","Nome"};
+        model = new DefaultTableModel(columns, 0);
+        tableFabricantees.setModel(model);
+        String line[] = new String[2]; 
+        Object [][] linha = control.relatorioTodosFabricantes();
+        for(int cont = 0; cont < control.retornaQuantidadeFabricantes(); cont++){
+            model.addRow(linha[cont]);
+            System.out.println(linha[cont][0]);
+            //line[0] = (String) linha[cont][0];
+            //line[1] = (String) linha[cont][1]; 
+            //model.addRow(line); 
+        }
     }
 
     /**
@@ -28,25 +50,22 @@ public class IUConsultaFabricante extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableClientes = new javax.swing.JTable();
+        tableFabricantees = new javax.swing.JTable();
         btnSelecionar = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        tableClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tableFabricantees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Código", "Nome"
             }
         ));
-        jScrollPane1.setViewportView(tableClientes);
+        jScrollPane1.setViewportView(tableFabricantees);
 
         btnSelecionar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnSelecionar.setText("Selecionar");
@@ -95,20 +114,23 @@ public class IUConsultaFabricante extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
-        int index = tableClientes.getSelectedRow();
+        int index = tableFabricantees.getSelectedRow();
         if( index >= 0){
-            //codCliente = (String) model.getValueAt(index, 0);
+            codFabricante = Integer.toString((Integer)model.getValueAt(index, 0));
             setVisible(false);
         }else{
-            //JOptionPane.showMessageDialog(null, "Selecione um Cliente!");
+            JOptionPane.showMessageDialog(null, "Selecione um Fabricante!");
         }
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        //codCliente = null;
+        codFabricante = null;
         setVisible(false);
     }//GEN-LAST:event_btnFecharActionPerformed
-
+    
+    public String getCodFab(){
+        return this.codFabricante;
+    }
     /**
      * @param args the command line arguments
      */
@@ -155,6 +177,6 @@ public class IUConsultaFabricante extends javax.swing.JDialog {
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnSelecionar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableClientes;
+    private javax.swing.JTable tableFabricantees;
     // End of variables declaration//GEN-END:variables
 }

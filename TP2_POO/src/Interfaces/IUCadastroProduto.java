@@ -4,10 +4,13 @@
  */
 package Interfaces;
 
-import Models.Eletronico;
-import Models.Movel;
-import Models.Vestuario;
+import Controller.ControladorProduto;
+import Models.Eletrodomestico;
+import Models.Fabricante;
+import Models.Produto;
 import static java.awt.Frame.NORMAL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
@@ -25,6 +28,7 @@ public class IUCadastroProduto extends javax.swing.JFrame {
         initComponents();
         lblDigCodigo.setVisible(false); 
         lblMensagem.setVisible(false); 
+        buttonGroup1.clearSelection();
     }
 
     /**
@@ -109,6 +113,8 @@ public class IUCadastroProduto extends javax.swing.JFrame {
             }
         });
 
+        txtFabricante.setEnabled(false);
+
         try {
             txtDataFabri.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -123,8 +129,12 @@ public class IUCadastroProduto extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Tipo de Produto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Rounded MT Bold", 0, 12))); // NOI18N
 
         buttonGroup1.add(btnMovel);
-        btnMovel.setSelected(true);
         btnMovel.setText("Movel");
+        btnMovel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMovelActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(btnVestuario);
         btnVestuario.setText("Vestuário");
@@ -302,9 +312,10 @@ public class IUCadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEletrodomesticosActionPerformed
 
     private void btnCadastraProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraProdutoActionPerformed
-        if((txtCodProd.getText().length() == 0 )||(txtNomeProd.getText().length() == 0)||
+        if(!(btnEletrodomesticos.isSelected()||(btnEletronico.isSelected())||(btnMovel.isSelected())||(btnVestuario.isSelected()))&&
+           ((txtCodProd.getText().length() == 0 )||(txtNomeProd.getText().length() == 0)||
            (txtDataFabri.getText().length() == 0)||(txtDesc.getText().length() == 0)||
-           (txtFabricante.getText().length() == 0)||(txtValor.getText().length() == 0)){
+           (txtFabricante.getText().length() == 0)||(txtValor.getText().length() == 0))){
               
            JOptionPane.showMessageDialog(null,"Preencha todos os campos!" , "Erro no Cadastro!", NORMAL);
         
@@ -319,9 +330,9 @@ public class IUCadastroProduto extends javax.swing.JFrame {
         LocalDate dateFabri =  LocalDate.parse(dataFabricacao,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         
             if(btnEletrodomesticos.isSelected()){
-                //Eletrodomestico eletro1 = new Eletrodomestico(codigo, nome, desc, dateFabri, valor, control.BuscaFabricantePorCodigo(codFabricante), true);
-                //Controlador control = new Controlador();
-                //control.addProd(eletro1);
+                ControladorProduto control = new ControladorProduto();
+                Eletrodomestico eletro1 = new Eletrodomestico(codigo, nome, desc, dateFabri, valor, control.buscaFabrincantePorCodigo(codFabricante), true);
+                control.addProduto(eletro1);
             }else if(btnEletronico.isSelected()){
                 //Eletronico eletronico = new Eletronico(codigo, nome, desc, dateFabri, valor, control.BuscaFabricantePorCodigo(codFabricante), true);
             }else if(btnVestuario.isSelected()){
@@ -337,36 +348,46 @@ public class IUCadastroProduto extends javax.swing.JFrame {
     private void txtCodProdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodProdFocusLost
         if(txtCodProd.getText().length()!= 0){
         lblDigCodigo.setVisible(false); 
-        /*int codigoAlug = Integer.parseInt(txtCodigo.getText()); 
-        Controlador control = new Controlador(); 
-        Aluguel alug = control.buscaAluguelPorCodigo(codigoAlug);
+        int codigoProd = Integer.parseInt(txtCodProd.getText()); 
+        ControladorProduto control = new ControladorProduto(); 
+        Produto prod = control.buscaProdutoPorCodigo(codigoProd);
             
-            if (alug != null){
-                lblDigCodigo.setEnabled(false); 
-                //txtBandeira.setEnabled(false);
-                txtCliente.setEnabled(false);
-                txtCodSeguro.setEnabled(false);
-                txtCorretor.setEnabled(false);
-                txtDataAluguel.setEnabled(false);
-                txtDataDevolu.setEnabled(false);
-                txtDataPagMensal.setEnabled(false);
-                txtDescSeguro.setEnabled(false);
-                txtImovel.setEnabled(false);
-                //txtNomeCartao.setEnabled(false);
-                txtSeguradoura.setEnabled(false);
-                txtTipoSeguro.setEnabled(false);
-                txtValor.setEnabled(false);
-                txtValorAlug.setEnabled(false);
-                //TxtNumeroCartao.setEnabled(false);
-
+            if (prod != null){
+                LocalDate dataFabri = prod.getDataFabricacao();
+                Date date = Date.valueOf(dataFabri);
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy"); 
+                String dataFabricacao = format.format(date); 
+                
+                
+                txtCodProd.setText(Integer.toString(prod.getCodigo()));
+                txtDataFabri.setText(dataFabricacao);
+                txtDesc.setText(prod.getDescricao());
+                txtNomeProd.setText(prod.getNome()); 
+                txtValor.setText(Float.toString(prod.getValor())); 
+                txtFabricante.setText(Integer.toString(prod.getFabricante().getCodigo())); 
+                
+                 
+                txtDataFabri.setEnabled(false); 
+                txtDesc.setEnabled(false); 
+                txtFabricante.setEnabled(false); 
+                txtNomeProd.setEnabled(false); 
+                txtValor.setEnabled(false); 
+                
                 lblMensagem.setVisible(true);
-                btnCadastrarAlug.setEnabled(false);
+                btnCadastraProduto.setEnabled(false);
                 btnConsultaFabricante.setEnabled(false); 
-                btnCadastrarAlug.requestFocus(); 
+                btnCadastraProduto.requestFocus(); 
+                
+                buttonGroup1.clearSelection();
+                btnMovel.setEnabled(false);
+                btnEletrodomesticos.setEnabled(false);
+                btnEletronico.setEnabled(false);
+                btnVestuario.setEnabled(false);
             }else{
                 lblMensagem.setVisible(false); 
-                btnCadastrarAlug.setEnabled(true);
-            }*/
+                btnCadastraProduto.setEnabled(true);
+                btnConsultaFabricante.setEnabled(true); 
+            }
         }else if(txtCodProd.getText().length() == 0){
             txtCodProd.requestFocus();
             lblDigCodigo.setVisible(true);
@@ -376,20 +397,37 @@ public class IUCadastroProduto extends javax.swing.JFrame {
     private void txtCodProdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodProdFocusGained
             
             lblMensagem.setVisible(false);
-            txtDataFabri.setEnabled(true);
-            txtDesc.setEnabled(true);
-            txtNomeProd.setEnabled(true);
-            txtValor.setEnabled(true);
-            btnConsultaFabricante.setEnabled(true); 
+            
+            txtCodProd.setText("");
+            txtDataFabri.setText("");
+            txtDesc.setText("");
+            txtFabricante.setText("");
+            txtNomeProd.setText("");
+            txtValor.setText("");
+            txtDataFabri.setEnabled(true); 
+            txtDesc.setEnabled(true); 
+            txtFabricante.setEnabled(true); 
+            txtNomeProd.setEnabled(true); 
+            txtValor.setEnabled(true); 
+            
+            
+            btnMovel.setEnabled(true);
+            btnEletrodomesticos.setEnabled(true);
+            btnEletronico.setEnabled(true);
+            btnVestuario.setEnabled(true);
     }//GEN-LAST:event_txtCodProdFocusGained
 
     private void btnConsultaFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaFabricanteActionPerformed
         IUConsultaFabricante consuFabri = new IUConsultaFabricante(null, true);
         consuFabri.setVisible(true); 
         
-        //String codFabricante = consuFabri.getCodigoFabri();
-        //txtFabricante.setText(codFabricante);
+        String codFabricante = consuFabri.getCodFab();
+        txtFabricante.setText(codFabricante);
     }//GEN-LAST:event_btnConsultaFabricanteActionPerformed
+
+    private void btnMovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMovelActionPerformed
 
     /***
      * @param args the command line arguments
