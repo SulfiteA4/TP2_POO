@@ -358,7 +358,7 @@ public class IUPrincipal extends javax.swing.JFrame {
 //                ctrlProd.addProduto(elet);
 
                   //ctrlProd.addFabricante(fab2);
-                Object[][] linha = ctrlProd.relatorioTodosProdutos();
+               // Object[][] linha = ctrlProd.relatorioTodosProdutos();
                 
                /* for(int cont = 0; cont < linha.length; cont++){
                     System.out.println(linha[cont][0]);

@@ -12,6 +12,7 @@ import Models.Eletrodomestico;
 import Models.Eletronico;
 
 import Models.IOArquivos;
+import Models.Movel;
 import Models.Produto;
 import Models.Vestuario;
 import java.util.ArrayList;
