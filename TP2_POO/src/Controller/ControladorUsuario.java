@@ -190,7 +190,6 @@ public class ControladorUsuario {
         while (iterator.hasNext()) {
             
             Cliente cliente = iterator.next();
-            
             if(cliente.getCodigo() == codigo){
                 return(cliente);
             }
