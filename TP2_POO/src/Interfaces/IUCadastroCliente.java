@@ -315,41 +315,46 @@ public class IUCadastroCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroClienteActionPerformed
-
-        if(!(btnClienteComum.isSelected()||(btnClienteOuro.isSelected()))&&((txtCodigo.getText().length() == 0 )||(txtNome.getText().length() == 0)||
-            (txtCPF.getText().length() == 0)||(txtRG.getText().length() == 0)||
-            (txtEndereco.getText().length() == 0)||(txtEmail.getText().length() == 0)||
-            (txtDataCad.getText().length() == 0 )||(txtDadaNasc.getText().length() == 0)||
-            (txtCEP.getText().length() == 0 ))){
-
+        
+        if((!(btnClienteComum.isSelected()))&&(!(btnClienteOuro.isSelected()))){
             JOptionPane.showMessageDialog(null,"Preencha todos os campos!" , "Erro no Cadastro!", NORMAL);
-
         }else{
-            int codigo = Integer.parseInt(txtCodigo.getText());
-            String nome = txtNome.getText();
-            String cpf = txtCPF.getText();
-            String rg = txtRG.getText();
-            String endereco = txtEndereco.getText();
-            String email = txtEmail.getText();
-            String dataCadastro = txtDataCad.getText();
-            String dataNasc = txtDadaNasc.getText();
-            String cep = txtCEP.getText();
-            LocalDate dateNasc =  LocalDate.parse(dataNasc,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            LocalDate dateCad = LocalDate.parse(dataCadastro,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            
-                
-                if(btnClienteComum.isSelected()){
-                    
-                    Cliente cliente = new Cliente(dateCad, codigo, nome, cpf, rg, dateNasc, endereco, cep, email);
-                    ControladorUsuario control = new ControladorUsuario();
-                    control.addCliente(cliente);
-                    //control.getTodosClientes();
-                }else{
-                    Cli_Ouro clienteOuro = new Cli_Ouro(dateCad, codigo, nome, cpf, rg, dateNasc, endereco, cep, email);
-                    ControladorUsuario control = new ControladorUsuario();
-                    control.addCliente(clienteOuro);
-                    //control.getTodosClientes();
+            if((txtCodigo.getText().length() == 0 )||(txtNome.getText().length() == 0)||
+                (txtCPF.getText().length() == 0)||(txtRG.getText().length() == 0)||
+                (txtEndereco.getText().length() == 0)||(txtEmail.getText().length() == 0)||
+                (txtDataCad.getText().length() == 0 )||(txtDadaNasc.getText().length() == 0)||
+                (txtCEP.getText().length() == 0 )){
 
+                JOptionPane.showMessageDialog(null,"Preencha todos os campos!" , "Erro no Cadastro!", NORMAL);
+
+            }else{
+                int codigo = Integer.parseInt(txtCodigo.getText());
+                String nome = txtNome.getText();
+                String cpf = txtCPF.getText();
+                String rg = txtRG.getText();
+                String endereco = txtEndereco.getText();
+                String email = txtEmail.getText();
+                String dataCadastro = txtDataCad.getText();
+                String dataNasc = txtDadaNasc.getText();
+                String cep = txtCEP.getText();
+                LocalDate dateNasc =  LocalDate.parse(dataNasc,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                LocalDate dateCad = LocalDate.parse(dataCadastro,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+
+                    if(btnClienteComum.isSelected()){
+
+                        Cliente cliente = new Cliente(dateCad, codigo, nome, cpf, rg, dateNasc, endereco, cep, email);
+                        ControladorUsuario control = new ControladorUsuario();
+                        control.addCliente(cliente);
+                        setVisible(false); 
+                        //control.getTodosClientes();
+                    }else{
+                        Cli_Ouro clienteOuro = new Cli_Ouro(dateCad, codigo, nome, cpf, rg, dateNasc, endereco, cep, email);
+                        ControladorUsuario control = new ControladorUsuario();
+                        control.addCliente(clienteOuro);
+                        setVisible(false); 
+                        //control.getTodosClientes();
+                    }        
             }
         }
     }//GEN-LAST:event_btnCadastroClienteActionPerformed
@@ -364,6 +369,14 @@ public class IUCadastroCliente extends javax.swing.JFrame {
 
     private void txtCodigoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusGained
         //lblDigCodigo.setVisible(false);
+        txtCEP.setEnabled(true);
+        txtCPF.setEnabled(true);
+        txtDadaNasc.setEnabled(true);
+        txtDataCad.setEnabled(true);
+        txtEmail.setEnabled(true);
+        txtEndereco.setEnabled(true);
+        txtNome.setEnabled(true);
+        txtRG.setEnabled(true);
         lblMensagem.setVisible(false);
         btnClienteComum.setEnabled(true);
         btnClienteOuro.setEnabled(true); 
@@ -387,7 +400,6 @@ public class IUCadastroCliente extends javax.swing.JFrame {
             ControladorUsuario control = new ControladorUsuario();
 
             Cliente cli = control.buscaClientePorCodigo(codigoCliente);
-            System.out.println(cli);
 
             if(cli != null){
                 LocalDate dataNasc = cli.getDataNascimento();
@@ -400,7 +412,6 @@ public class IUCadastroCliente extends javax.swing.JFrame {
                 SimpleDateFormat format2 = new SimpleDateFormat("dd/MM/yyyy");
                 String dataCadastro = format2.format(date2);
                 
-                JOptionPane.showMessageDialog(rootPane, "Alou");
                 
                 txtCEP.setText(cli.getCep());
                 txtCPF.setText(cli.getCpf());

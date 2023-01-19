@@ -6,9 +6,10 @@ package Interfaces;
 
 import Controller.ControladorProduto;
 import Models.Eletrodomestico;
-import Models.Fabricante;
+import Models.Movel;
 import Models.Produto;
 import static java.awt.Frame.NORMAL;
+import static java.awt.SystemColor.control;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -312,37 +313,46 @@ public class IUCadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEletrodomesticosActionPerformed
 
     private void btnCadastraProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraProdutoActionPerformed
-        if(!(btnEletrodomesticos.isSelected()||(btnEletronico.isSelected())||(btnMovel.isSelected())||(btnVestuario.isSelected()))&&
-           ((txtCodProd.getText().length() == 0 )||(txtNomeProd.getText().length() == 0)||
-           (txtDataFabri.getText().length() == 0)||(txtDesc.getText().length() == 0)||
-           (txtFabricante.getText().length() == 0)||(txtValor.getText().length() == 0))){
-              
-           JOptionPane.showMessageDialog(null,"Preencha todos os campos!" , "Erro no Cadastro!", NORMAL);
         
-        }else{
-        
-        int codigo = Integer.parseInt(txtCodProd.getText());
-        String nome = txtNomeProd.getText(); 
-        String desc = txtDesc.getText(); 
-        int codFabricante = Integer.parseInt(txtFabricante.getText()); 
-        float valor = Float.parseFloat(txtValor.getText());  
-        String dataFabricacao = txtDataFabri.getText(); 
-        LocalDate dateFabri =  LocalDate.parse(dataFabricacao,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        
-            if(btnEletrodomesticos.isSelected()){
-                ControladorProduto control = new ControladorProduto();
-                Eletrodomestico eletro1 = new Eletrodomestico(codigo, nome, desc, dateFabri, valor, control.buscaFabrincantePorCodigo(codFabricante), true);
-                control.addProduto(eletro1);
-            }else if(btnEletronico.isSelected()){
-                //Eletronico eletronico = new Eletronico(codigo, nome, desc, dateFabri, valor, control.BuscaFabricantePorCodigo(codFabricante), true);
-            }else if(btnVestuario.isSelected()){
-                //Vestuario vestuario = new Vestuario(codigo, nome, desc, dateFabri, valor, control.BuscaFabricantePorCodigo(codFabricante), true);
+        if((!(btnEletrodomesticos.isSelected()))&&(!(btnEletronico.isSelected()))&&(!(btnMovel.isSelected()))&&(!(btnVestuario.isSelected()))){
+           
+            JOptionPane.showMessageDialog(null,"Escolha o tipo do produto!" , "Erro no Cadastro!", NORMAL);
+        }else{    
+            if((txtCodProd.getText().length() == 0 )||(txtNomeProd.getText().length() == 0)||
+               (txtDataFabri.getText().length() == 0)||(txtDesc.getText().length() == 0)||
+               (txtFabricante.getText().length() == 0)||(txtValor.getText().length() == 0)){
+
+               JOptionPane.showMessageDialog(null,"Preencha todos os campos!" , "Erro no Cadastro!", NORMAL);
+
             }else{
-                //Movel movel = new Movel(codigo, nome, desc, dateFabri, valor, control.BuscaFabricantePorCodigo(codFabricante), true);
+
+            int codigo = Integer.parseInt(txtCodProd.getText());
+            String nome = txtNomeProd.getText(); 
+            String desc = txtDesc.getText(); 
+            int codFabricante = Integer.parseInt(txtFabricante.getText()); 
+            float valor = Float.parseFloat(txtValor.getText());  
+            String dataFabricacao = txtDataFabri.getText(); 
+            LocalDate dateFabri =  LocalDate.parse(dataFabricacao,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+                if(btnEletrodomesticos.isSelected()){
+                    ControladorProduto control = new ControladorProduto();
+                    Eletrodomestico eletro1 = new Eletrodomestico(codigo, nome, desc, dateFabri, valor, control.buscaFabrincantePorCodigo(codFabricante), true);
+                    control.addProduto(eletro1); 
+                    setVisible(false);
+                }else if(btnEletronico.isSelected()){
+                    //Eletronico eletronico = new Eletronico(codigo, nome, desc, dateFabri, valor, control.BuscaFabricantePorCodigo(codFabricante), true);
+                     setVisible(false);
+                }else if(btnVestuario.isSelected()){
+                    //Vestuario vestuario = new Vestuario(codigo, nome, desc, dateFabri, valor, control.BuscaFabricantePorCodigo(codFabricante), true);
+                     setVisible(false);
+                }else{
+                    //Movel movel = new Movel(codigo, nome, desc, dateFabri, valor, control.BuscaFabricantePorCodigo(codFabricante), true);
+                     setVisible(false);
+                }
+
+
             }
-     
-        
-        }
+        }    
     }//GEN-LAST:event_btnCadastraProdutoActionPerformed
 
     private void txtCodProdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodProdFocusLost
@@ -406,7 +416,7 @@ public class IUCadastroProduto extends javax.swing.JFrame {
             txtValor.setText("");
             txtDataFabri.setEnabled(true); 
             txtDesc.setEnabled(true); 
-            txtFabricante.setEnabled(true); 
+            txtFabricante.setEnabled(false); 
             txtNomeProd.setEnabled(true); 
             txtValor.setEnabled(true); 
             
