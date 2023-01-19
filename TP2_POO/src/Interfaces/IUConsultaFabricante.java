@@ -29,14 +29,9 @@ public class IUConsultaFabricante extends javax.swing.JDialog {
         String columns[] = {"Código","Nome"};
         model = new DefaultTableModel(columns, 0);
         tableFabricantees.setModel(model);
-        String line[] = new String[2]; 
         Object [][] linha = control.relatorioTodosFabricantes();
         for(int cont = 0; cont < control.retornaQuantidadeFabricantes(); cont++){
             model.addRow(linha[cont]);
-            System.out.println(linha[cont][0]);
-            //line[0] = (String) linha[cont][0];
-            //line[1] = (String) linha[cont][1]; 
-            //model.addRow(line); 
         }
     }
 
