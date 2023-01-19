@@ -335,19 +335,29 @@ public class IUCadastroProduto extends javax.swing.JFrame {
             LocalDate dateFabri =  LocalDate.parse(dataFabricacao,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
                 if(btnEletrodomesticos.isSelected()){
+                    String tipo = "ELETRODOMESTICO";
                     ControladorProduto control = new ControladorProduto();
-                    Eletrodomestico eletro1 = new Eletrodomestico(codigo, nome, desc, dateFabri, valor, control.buscaFabrincantePorCodigo(codFabricante), true);
-                    control.addProduto(eletro1); 
+                    control.AddProduto(codigo, nome, desc, dateFabri, valor, control.buscaFabrincantePorCodigo(codFabricante), tipo);
                     setVisible(false);
+                    System.out.println(control.getEletrodomesticos());
                 }else if(btnEletronico.isSelected()){
-                    //Eletronico eletronico = new Eletronico(codigo, nome, desc, dateFabri, valor, control.BuscaFabricantePorCodigo(codFabricante), true);
-                     setVisible(false);
+                    String tipo ="ELETRONICO"; 
+                    ControladorProduto control = new ControladorProduto();
+                    control.AddProduto(codigo, nome, desc, dateFabri, valor, control.buscaFabrincantePorCodigo(codFabricante), tipo);
+                    setVisible(false);
+                    System.out.println(control.getEletronicos());
                 }else if(btnVestuario.isSelected()){
-                    //Vestuario vestuario = new Vestuario(codigo, nome, desc, dateFabri, valor, control.BuscaFabricantePorCodigo(codFabricante), true);
+                     String tipo = "VESTUARIO"; 
+                     ControladorProduto control = new ControladorProduto();
+                     control.AddProduto(codigo, nome, desc, dateFabri, valor, control.buscaFabrincantePorCodigo(codFabricante), tipo);
                      setVisible(false);
+                     System.out.println(control.getVestuario());
                 }else{
-                    //Movel movel = new Movel(codigo, nome, desc, dateFabri, valor, control.BuscaFabricantePorCodigo(codFabricante), true);
-                     setVisible(false);
+                    String tipo = "MOVEL"; 
+                    ControladorProduto control = new ControladorProduto();
+                    control.AddProduto(codigo, nome, desc, dateFabri, valor, control.buscaFabrincantePorCodigo(codFabricante), tipo);
+                    setVisible(false);
+                    System.out.println(control.getMoveis());
                 }
 
 

@@ -10,11 +10,13 @@ import Models.Fabricante;
 
 import Models.Eletrodomestico;
 import Models.Eletronico;
+import Models.FactoryProduto;
 
 import Models.IOArquivos;
 import Models.Movel;
 import Models.Produto;
 import Models.Vestuario;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -34,17 +36,16 @@ public class ControladorProduto {
         return COM.getConfiguracoes().getArquivoFabricantes();
     }
     
-    public void addProduto(Produto produto){
-        IOArquivos arq = new IOArquivos();
-        arq.escreverProduto(produto);
-    }
-    
-    public void addFabricante(Fabricante fabricante){
+    public void addFabricanteArq(Fabricante fabricante){
         IOArquivos arq = new IOArquivos(); 
         arq.escreverFabricante(fabricante);
     }
     
-    
+    public void AddProduto(int codigo, String nome, String descricao, LocalDate data, float valor, Fabricante fabricante, String tipo){
+        IOArquivos arq = new IOArquivos();
+        Produto produto = FactoryProduto.factoryMethod(codigo, nome, descricao, data, valor, fabricante, true, tipo);
+        arq.escreverProduto(produto);
+    }
     
     public Object[][] relatorioTodosProdutos(){
         IOArquivos arq = new IOArquivos();
