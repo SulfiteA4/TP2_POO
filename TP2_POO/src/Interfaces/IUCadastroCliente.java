@@ -440,8 +440,7 @@ public class IUCadastroCliente extends javax.swing.JFrame {
             }else{
                 
                 btnCadastroCliente.setEnabled(true);
-                lblMensagem.setVisible(false);
-                btnCadastroCliente.setEnabled(true); 
+                lblMensagem.setVisible(false); 
                 
             }
         }else if(txtCodigo.getText().length() == 0){

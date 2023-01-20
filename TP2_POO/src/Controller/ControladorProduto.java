@@ -15,11 +15,11 @@ import Models.FactoryProduto;
 import Models.IOArquivos;
 import Models.Movel;
 import Models.Produto;
+import Models.Transportadora;
 import Models.Vestuario;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,8 +36,9 @@ public class ControladorProduto {
         return COM.getConfiguracoes().getArquivoFabricantes();
     }
     
-    public void addFabricanteArq(Fabricante fabricante){
+    public void addFabricante(int codigo, String cnpj, String nome, String descricao, String email, String telefone, String endereco){
         IOArquivos arq = new IOArquivos(); 
+        Fabricante fabricante = new Fabricante(codigo, cnpj, nome, descricao, email, telefone, endereco);
         arq.escreverFabricante(fabricante);
     }
     
@@ -45,6 +46,12 @@ public class ControladorProduto {
         IOArquivos arq = new IOArquivos();
         Produto produto = FactoryProduto.factoryMethod(codigo, nome, descricao, data, valor, fabricante, true, tipo);
         arq.escreverProduto(produto);
+    }
+    
+    public void addTransportadora(int codigo, String cnpj, String nome, String email, String telefone, String endereco, int tempoDeEntrega){
+        IOArquivos arq = new IOArquivos(); 
+        Transportadora transportadora = new Transportadora(codigo, cnpj, nome, email, telefone, endereco, tempoDeEntrega);
+        arq.escreverTransportadora(transportadora); 
     }
     
     public Object[][] relatorioTodosProdutos(){
@@ -72,6 +79,30 @@ public class ControladorProduto {
         return(linha);
     }
 
+        public Object[][] relatorioTodasTransportadoras(){
+        IOArquivos arq = new IOArquivos();
+        int cont = 0;
+        Object[][] linha = new Object[arq.lerTransportadora().size()][7];
+        
+        //Padrão Iterator!
+        Iterator<Transportadora> iterator = arq.lerTransportadora().iterator();
+        
+        while (iterator.hasNext()) {
+            
+            Transportadora transportadora = iterator.next();
+            
+            linha[cont][0] = transportadora.getCodigo();
+            linha[cont][1] = transportadora.getCnpj();
+            linha[cont][2] = transportadora.getNome();
+            linha[cont][3] = transportadora.getEmail();
+            linha[cont][4] = transportadora.getTelefone();
+            linha[cont][5] = transportadora.getEndereco();
+            linha[cont][6] = transportadora.getTempoDeEntrega();
+            cont++;
+        }
+        
+        return(linha);
+    }
     
     public Object[][] relatorioTodosFabricantes(){
         IOArquivos arq = new IOArquivos();
@@ -98,8 +129,26 @@ public class ControladorProduto {
         return(linha);
     }
 
+    
+        public Transportadora buscaTransportadoraPorCodigo(int codigo){
+            IOArquivos arq = new IOArquivos(); 
+            //Padrão Iterator!
+            Iterator<Transportadora> iterator = arq.lerTransportadora().iterator();
         
-         public Produto buscaProdutoPorCodigo(int codigo){
+            while (iterator.hasNext()) {
+            
+                Transportadora transportadora = iterator.next();
+            
+                if(transportadora.getCodigo() == codigo){
+                    return(transportadora);
+                }
+        }
+        
+        return(null);
+            
+    }  
+        
+    public Produto buscaProdutoPorCodigo(int codigo){
             IOArquivos arq = new IOArquivos(); 
             //Padrão Iterator!
             Iterator<Produto> iterator = arq.lerProdutos().iterator();
@@ -115,7 +164,7 @@ public class ControladorProduto {
         
         return(null);
             
-        }  
+    }  
     
 
     
@@ -210,6 +259,7 @@ public class ControladorProduto {
             
         }  
     
+        
     public int retornaQuantidadeFabricantes(){
         IOArquivos arq = new IOArquivos();
         int cont;
@@ -277,6 +327,8 @@ public class ControladorProduto {
         return eletrodomestico;
     }
     
+
+    
     public ArrayList<Produto> getEletronicos(){
         IOArquivos arq = new IOArquivos();
         Iterator iterator = arq.lerProdutos().iterator();
@@ -307,5 +359,6 @@ public class ControladorProduto {
         return vestuario;
     }
     
+ 
     
 }

@@ -326,7 +326,7 @@ public class IUCadastroProduto extends javax.swing.JFrame {
 
             }else{
 
-            int codigo = Integer.parseInt(txtCodProd.getText());
+        int codigo = Integer.parseInt(txtCodProd.getText());
             String nome = txtNomeProd.getText(); 
             String desc = txtDesc.getText(); 
             int codFabricante = Integer.parseInt(txtFabricante.getText()); 
