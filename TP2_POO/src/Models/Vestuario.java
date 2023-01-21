@@ -25,6 +25,17 @@ public class Vestuario extends Produto implements Serializable{
     }
     
     @Override
+    public int compareTo(Produto produtoY){
+        if(this.getValor() < produtoY.getValor() ){
+            return -1;
+        } else if (this.getValor() > produtoY.getValor() ){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    
+    @Override
     public String toString() {
         return  "\nVestuario:" +
                     "\n\tCodigo: " + codigo + 

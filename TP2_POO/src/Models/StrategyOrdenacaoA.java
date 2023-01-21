@@ -5,6 +5,7 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -14,6 +15,7 @@ public class StrategyOrdenacaoA implements OrdenacaoStrategy {
     
     @Override
     public ArrayList<Produto> ordenar(ArrayList<Produto> produtos){
+        Collections.sort(produtos);
         return produtos;
     };
 }
