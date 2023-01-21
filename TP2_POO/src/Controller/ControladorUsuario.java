@@ -8,8 +8,10 @@ import Models.Cli_Ouro;
 import Models.Cliente;
 import Models.ComercioEletronico;
 import Models.Configuracao;
+import Models.FactoryCliente;
 import Models.Gerente;
 import Models.IOArquivos;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -41,15 +43,18 @@ public class ControladorUsuario {
     }
     
     
-    public void addCliente( Cliente cliente){
+    public void addCliente(LocalDate dataCadastro, int codigo, String nome, String cpf, String rg, LocalDate dataNascimento, String endereco, String cep, String email, String tipo){
         IOArquivos arq = new IOArquivos();
+        Cliente cliente = FactoryCliente.factoryMethod(dataCadastro, codigo, nome, cpf, rg, dataNascimento, endereco, cep, email, tipo);
         arq.escreverCliente(cliente);
     }
 
-    public void addGerente( Gerente gerente){
+    public void addGerente( float salario, String pis, LocalDate dataAdmissao, int codigo, String nome, String cpf, String rg, LocalDate dataNascimento, String endereco, String cep, String email){
         IOArquivos arq = new IOArquivos();
+        Gerente gerente = new Gerente(salario, pis, dataAdmissao, codigo, nome, cpf, rg, dataNascimento, endereco, cep, email);
         arq.escreverGerente(gerente);
     }
+    
     
     //Relatórios de Cliente
     
