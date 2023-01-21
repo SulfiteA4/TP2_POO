@@ -11,7 +11,7 @@ import java.time.LocalDate;
  *
  * @author Lucas
  */
-public abstract class Produto implements Serializable{
+public abstract class Produto implements Serializable, Comparable<Produto>{
     protected int codigo;
     protected String nome;
     protected String descricao;
