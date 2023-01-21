@@ -151,6 +151,8 @@ public class IOArquivos {
         
     }
     
+    
+    
     public void escreverGerente(Gerente gerente){
         
         try {

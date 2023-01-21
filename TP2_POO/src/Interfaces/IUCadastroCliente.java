@@ -339,19 +339,16 @@ public class IUCadastroCliente extends javax.swing.JFrame {
                 String cep = txtCEP.getText();
                 LocalDate dateNasc =  LocalDate.parse(dataNasc,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 LocalDate dateCad = LocalDate.parse(dataCadastro,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
+                ControladorUsuario control = new ControladorUsuario(); 
 
                     if(btnClienteComum.isSelected()){
-
-                        Cliente cliente = new Cliente(dateCad, codigo, nome, cpf, rg, dateNasc, endereco, cep, email);
-                        ControladorUsuario control = new ControladorUsuario();
-                        control.addCliente(cliente);
+                        String tipo = "ClienteComum"; 
+                        control.addCliente(dateCad, codigo, nome, cpf, rg, dateNasc, endereco, cep, email, tipo);
                         setVisible(false); 
                         //control.getTodosClientes();
                     }else{
-                        Cli_Ouro clienteOuro = new Cli_Ouro(dateCad, codigo, nome, cpf, rg, dateNasc, endereco, cep, email);
-                        ControladorUsuario control = new ControladorUsuario();
-                        control.addCliente(clienteOuro);
+                        String tipo = "Cliente Ouro"; 
+                        control.addCliente(dateCad, codigo, nome, cpf, rg, dateNasc, endereco, cep, email, tipo);
                         setVisible(false); 
                         //control.getTodosClientes();
                     }        
