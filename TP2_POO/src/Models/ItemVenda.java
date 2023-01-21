@@ -9,7 +9,7 @@ package Models;
  * @author Lucas
  */
 public class ItemVenda {
-    private Produto produto;
+    private int codProduto;
     private float valor;
     private int quantidade;
 
@@ -17,17 +17,17 @@ public class ItemVenda {
     }
 
     public ItemVenda(Produto produto, float valor, int quantidade) {
-        this.produto = produto;
+        this.codProduto = codProduto;
         this.valor = valor;
         this.quantidade = quantidade;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public int getCodProduto() {
+        return codProduto;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setCodProduto(Produto produto) {
+        this.codProduto = codProduto;
     }
 
     public float getValor() {

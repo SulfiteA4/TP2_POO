@@ -7,6 +7,10 @@ package Models;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  *
@@ -127,14 +131,17 @@ public class Venda implements Serializable{
     }
     
     public void calcularDataEntrega(){
-    
+
+        int diasEntrega = (getTransportadora().getTempoDeEntrega()) ;
+        dataDaEntrega = dataDaEntrega.plusDays(diasEntrega);
+        
     }
     
 //    necessário implementar
     
-//    public ItemVenda addItemVenda(ItemVenda item){
-//    
-//    }
+    //public ItemVenda addItemVenda(ItemVenda item){
+        
+    //}
     
     
     

@@ -14,7 +14,7 @@ public class FactoryCliente {
     public static Cliente factoryMethod(LocalDate dataCadastro, int codigo, String nome, String cpf, String rg, LocalDate dataNascimento, String endereco, String cep, String email, String tipo){
         switch(tipo){
             case "Cliente Comum":
-                return new Cliente(dataCadastro, codigo, nome, cpf, rg, dataNascimento, endereco, cep, email);
+                return new Cli_Comum(dataCadastro, codigo, nome, cpf, rg, dataNascimento, endereco, cep, email);
             case "Cliente Ouro": 
                 return new Cli_Ouro(dataCadastro, codigo, nome, cpf, rg, dataNascimento, endereco, cep, email); 
             default:
