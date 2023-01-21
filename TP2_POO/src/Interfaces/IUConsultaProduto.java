@@ -114,7 +114,10 @@ public class IUConsultaProduto extends javax.swing.JDialog {
         codProduto = null;
         setVisible(false);
     }//GEN-LAST:event_btnFecharActionPerformed
-
+    
+    public String getCodProd(){
+        return this.codProduto;
+    }
     /**
      * @param args the command line arguments
      */
