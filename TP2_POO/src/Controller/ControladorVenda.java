@@ -4,8 +4,16 @@
  */
 package Controller;
 
-import static Controller.ControladorProduto.COM;
+import Models.Cliente;
 import Models.ComercioEletronico;
+import Models.Gerente;
+import Models.IOArquivos;
+import Models.ItemVenda;
+import Models.Pagamento;
+import Models.Transportadora;
+import Models.Venda;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,4 +29,12 @@ public class ControladorVenda {
     public String getConfigTransportadora(){
         return COM.getConfiguracoes().getArquivoTransportadoras();
     };
+    
+    public void addVenda(int codigo, Cliente cliente, Gerente gerente, LocalDate dataVenda, LocalDate dataDaEntrega, ArrayList<ItemVenda> itensDaVenda, float valorTotal, float valorComDesconto, Pagamento formaPagamento, Transportadora transportadora){
+        IOArquivos arq = new IOArquivos();
+        Venda venda = new Venda(codigo, cliente, gerente, dataVenda, dataDaEntrega, itensDaVenda, valorTotal, valorComDesconto, formaPagamento, transportadora);
+        arq.escreverVendas(venda);
+    }
+    
+    
 }
