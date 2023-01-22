@@ -13,6 +13,10 @@ import java.io.Serializable;
 public class Pix extends Pagamento implements Serializable{
     private String codigoPix;
 
+    public Pix(int codigoNota) {
+        super(codigoNota);
+    }
+    
     public Pix(String codigoPix, int codigoNota) {
         super(codigoNota);
         this.codigoPix = codigoPix;

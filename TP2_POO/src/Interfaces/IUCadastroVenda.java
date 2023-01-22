@@ -553,6 +553,22 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         formaPagamento, controlVenda.buscaTransportadoraPorCodigo(codigo));
 
         
+<<<<<<< HEAD
+=======
+        //controlVenda.addVenda(codigo, codCli, codGerente, LocalDate.MIN, LocalDate.MIN, itensDaVenda, total, TOP_ALIGNMENT, formaPagamento, transportadora);
+        int numero;
+        String codProduto;
+        float valor, quant;
+
+        for(int i=0; i<qtdItens;i++){
+            numero = i+1;
+            codProduto = (String) model.getValueAt(i, 0);
+            valor = Float.parseFloat((String)  model.getValueAt(i, 2));
+            quant = Float.parseFloat((String)  model.getValueAt(i, 3));
+//            control.addItem(numero, codProduto, valor, quant);;
+        }
+//        control.gravarVenda();
+>>>>>>> 3064fe55f8b1059dbaee660f1b17ae3838bb0e89
         JOptionPane.showMessageDialog(null, "Venda Salva com Sucesso");
         }
     }//GEN-LAST:event_btnCadastraVendaActionPerformed
