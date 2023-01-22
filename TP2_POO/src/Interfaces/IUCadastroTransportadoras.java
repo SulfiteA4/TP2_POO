@@ -5,6 +5,7 @@
 package Interfaces;
 
 import Controller.ControladorProduto;
+import Controller.ControladorVenda;
 import Models.Transportadora;
 import javax.swing.JOptionPane;
 
@@ -51,7 +52,7 @@ public class IUCadastroTransportadoras extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtDias = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblCadastroCliente.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         lblCadastroCliente.setForeground(new java.awt.Color(0, 0, 0));
@@ -222,10 +223,10 @@ public class IUCadastroTransportadoras extends javax.swing.JFrame {
 
         if(txtCodigo.getText().length()!= 0){
             lblDigCodigo.setVisible(false);
-            int codigoFabricante = Integer.parseInt(txtCodigo.getText());
-            ControladorProduto control = new ControladorProduto();
+            int codigoTrans = Integer.parseInt(txtCodigo.getText());
+            ControladorVenda control = new ControladorVenda();
 
-            Transportadora transp = control.buscaTransportadoraPorCodigo(codigoFabricante);
+            Transportadora transp = control.buscaTransportadoraPorCodigo(codigoTrans);
 
             if(transp != null){
 
@@ -281,6 +282,7 @@ public class IUCadastroTransportadoras extends javax.swing.JFrame {
 
             ControladorProduto control = new ControladorProduto();
             control.addTransportadora(codigo, cnpj, nome, email, tel, endereco, tempoEntrega);
+            setVisible(false); 
            
         }
     }//GEN-LAST:event_btnCadastraTransportadoraActionPerformed

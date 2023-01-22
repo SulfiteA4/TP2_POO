@@ -10,10 +10,12 @@ import Models.Gerente;
 import Models.IOArquivos;
 import Models.ItemVenda;
 import Models.Pagamento;
+import Models.Produto;
 import Models.Transportadora;
 import Models.Venda;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -30,11 +32,38 @@ public class ControladorVenda {
         return COM.getConfiguracoes().getArquivoTransportadoras();
     };
     
-    public void addVenda(int codigo, Cliente cliente, Gerente gerente, LocalDate dataVenda, LocalDate dataDaEntrega, ArrayList<ItemVenda> itensDaVenda, float valorTotal, float valorComDesconto, Pagamento formaPagamento, Transportadora transportadora){
+    public void addVenda(int codigo, Cliente cliente, Gerente gerente, LocalDate dataVenda, ArrayList<ItemVenda> itensDaVenda, float valorTotal, Pagamento formaPagamento, Transportadora transportadora){
         IOArquivos arq = new IOArquivos();
-        Venda venda = new Venda(codigo, cliente, gerente, dataVenda, dataDaEntrega, itensDaVenda, valorTotal, valorComDesconto, formaPagamento, transportadora);
+        Venda venda = new Venda(codigo, cliente, gerente, dataVenda, null, itensDaVenda, valorTotal, 0, formaPagamento, transportadora);
+        LocalDate dataDaEntrega = venda.calcularDataEntrega(); 
+        venda.setDataDaEntrega(dataDaEntrega);
+        venda.setValorComDesconto(venda.calcularValorTotal());
         arq.escreverVendas(venda);
     }
     
+    public ItemVenda AddItemVenda(Produto produto, float valor, int quantidade){
+        ItemVenda itens = new ItemVenda(produto, valor, quantidade);
+        return itens;
+    }
+    
+    
+        
+    public Transportadora buscaTransportadoraPorCodigo(int codigo){
+            IOArquivos arq = new IOArquivos(); 
+            //Padrão Iterator!
+            Iterator<Transportadora> iterator = arq.lerTransportadora().iterator();
+        
+            while (iterator.hasNext()) {
+            
+                Transportadora transportadora = iterator.next();
+            
+                if(transportadora.getCodigo() == codigo){
+                    return(transportadora);
+                }
+        }
+        
+        return(null);
+            
+    } 
     
 }

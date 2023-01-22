@@ -92,8 +92,8 @@ public class ControladorProduto {
             Transportadora transportadora = iterator.next();
             
             linha[cont][0] = transportadora.getCodigo();
-            linha[cont][1] = transportadora.getCnpj();
-            linha[cont][2] = transportadora.getNome();
+            linha[cont][1] = transportadora.getNome();
+            linha[cont][2] = transportadora.getCnpj();
             linha[cont][3] = transportadora.getEmail();
             linha[cont][4] = transportadora.getTelefone();
             linha[cont][5] = transportadora.getEndereco();
@@ -129,24 +129,7 @@ public class ControladorProduto {
         return(linha);
     }
 
-    
-        public Transportadora buscaTransportadoraPorCodigo(int codigo){
-            IOArquivos arq = new IOArquivos(); 
-            //Padrão Iterator!
-            Iterator<Transportadora> iterator = arq.lerTransportadora().iterator();
-        
-            while (iterator.hasNext()) {
-            
-                Transportadora transportadora = iterator.next();
-            
-                if(transportadora.getCodigo() == codigo){
-                    return(transportadora);
-                }
-        }
-        
-        return(null);
-            
-    }  
+ 
         
     public Produto buscaProdutoPorCodigo(int codigo){
             IOArquivos arq = new IOArquivos(); 
@@ -270,7 +253,30 @@ public class ControladorProduto {
         }
         return(cont);
     }
-
+    
+        public int retornaQuantidadeProdutos(){
+        IOArquivos arq = new IOArquivos();
+        int cont;
+        try{
+            cont = arq.lerProdutos().size();
+        }catch(NullPointerException e){
+            cont = 0;
+        }
+        return(cont);
+    }
+        
+    public int retornaQuantidadeTransportadoras(){
+        IOArquivos arq = new IOArquivos();
+        int cont;
+        try{
+            cont = arq.lerTransportadora().size();
+        }catch(NullPointerException e){
+            cont = 0;
+        }
+        return(cont);
+    }
+    
+    
     public Object[][] relatorioVestuario(){
         int cont = 0;
         Object[][] linha = new Object[this.getVestuario().size()][7];
