@@ -552,6 +552,7 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         controlUsuario.buscaGerentePorCodigo(codGerente), dateVenda, itens, total, 
         formaPagamento, controlVenda.buscaTransportadoraPorCodigo(codigo));
 
+<<<<<<< HEAD
         
 <<<<<<< HEAD
 =======
@@ -569,6 +570,9 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         }
 //        control.gravarVenda();
 >>>>>>> 3064fe55f8b1059dbaee660f1b17ae3838bb0e89
+=======
+       
+>>>>>>> 0732833753dc4b89604f799349e7441e06397c6a
         JOptionPane.showMessageDialog(null, "Venda Salva com Sucesso");
         }
     }//GEN-LAST:event_btnCadastraVendaActionPerformed
