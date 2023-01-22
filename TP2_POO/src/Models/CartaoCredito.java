@@ -14,6 +14,10 @@ public class CartaoCredito extends Pagamento implements Serializable{
     private String nome;
     private String bandeira;
     private String numero;
+    
+    public CartaoCredito(int codigoNota) {
+        super(codigoNota);
+     }
 
     public CartaoCredito(String nome, String bandeira, String numero, int codigoNota) {
         super(codigoNota);
