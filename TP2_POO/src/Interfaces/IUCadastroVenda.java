@@ -273,15 +273,15 @@ public class IUCadastroVenda extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(txtTransp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTransp))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnPIX)
                         .addComponent(jLabel8)
                         .addComponent(txtChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3)
-                        .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(txtTransp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnTransp)))
+                        .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -542,18 +542,17 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         int codigo = Integer.parseInt(txtCodigo.getText());
         int codCli = Integer.parseInt(txtCodCli.getText());
         int codGerente = Integer.parseInt(txtGerente.getText());
+        int codTrans = Integer.parseInt(txtTransp.getText());
         String dataVenda = txtDataVenda.getText(); 
         LocalDate dateVenda =  LocalDate.parse(dataVenda,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         
         if(btnPIX.isSelected()){
         String chavePix = txtChave.getText(); 
             
-        controlVenda.addVenda(codigo, controlUsuario.buscaClientePorCodigo(codCli), 
-        controlUsuario.buscaGerentePorCodigo(codGerente), dateVenda, itens, total, 
-        formaPagamento, controlVenda.buscaTransportadoraPorCodigo(codigo));
+        //controlVenda.addVenda(codigo, controlUsuario.buscaClientePorCodigo(codCli), 
+        //controlUsuario.buscaGerentePorCodigo(codGerente), dateVenda, itens, total, 
+        //formaPagamento, controlVenda.buscaTransportadoraPorCodigo(codTrans));
 
-       
-        JOptionPane.showMessageDialog(null, "Venda Salva com Sucesso");
         }
     }//GEN-LAST:event_btnCadastraVendaActionPerformed
 
