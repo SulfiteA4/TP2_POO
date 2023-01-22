@@ -553,7 +553,6 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         //controlUsuario.buscaGerentePorCodigo(codGerente), dateVenda, itens, total, 
         //formaPagamento, controlVenda.buscaTransportadoraPorCodigo(codTrans));
 
-        
         }
     }//GEN-LAST:event_btnCadastraVendaActionPerformed
 
