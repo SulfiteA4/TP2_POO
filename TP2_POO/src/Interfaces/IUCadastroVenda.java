@@ -8,10 +8,11 @@ import Controller.ControladorProduto;
 import Controller.ControladorUsuario;
 import Controller.ControladorVenda;
 import Models.Cliente;
+import Models.ItemVenda;
 import Models.Produto;
-import static java.awt.SystemColor.control;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,6 +26,7 @@ public class IUCadastroVenda extends javax.swing.JFrame {
     private ControladorUsuario controlUsuario; 
     private ControladorVenda controlVenda; 
     private float total;
+    private ArrayList<ItemVenda> itens = new ArrayList(); 
     /**
      * Creates new form IUCadastroVenda
      */
@@ -39,7 +41,7 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         model = new DefaultTableModel(colunas, 0);
         tabela.setModel(model);
         
-        textDescricao.setEditable(false);
+        txtNomeProd.setEditable(false);
         textValor.setEditable(false);
         textTotal.setEditable(false);
         
@@ -68,9 +70,9 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtGerente = new javax.swing.JTextField();
         btnConsultaGerente = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        btnCartao = new javax.swing.JRadioButton();
+        btnPIX = new javax.swing.JRadioButton();
+        btnDinheiro = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         txtChave = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -80,16 +82,17 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         txtBandeira = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtNumero = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtTransp = new javax.swing.JTextField();
+        btnTransp = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         textCodProduto = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        textDescricao = new javax.swing.JTextField();
+        txtNomeProd = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         textValor = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        textQuantidade = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        AddItem = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         jLabel25 = new javax.swing.JLabel();
@@ -97,19 +100,26 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         buttonRemoverItem2 = new javax.swing.JButton();
         buttonLocalizarProduto2 = new javax.swing.JButton();
         btnCadastraVenda = new javax.swing.JButton();
+        txtQuantidade = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cabeçalho"));
         jPanel1.setName(""); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         jLabel2.setText("Cliente");
 
+        txtCodCli.setEnabled(false);
+
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         jLabel3.setText("Data da Venda");
 
+        jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         jLabel4.setText("Código");
 
-        buttonLocalizarCliente.setText("Localizar Cliente");
+        buttonLocalizarCliente.setText("Consulta Cliente");
         buttonLocalizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLocalizarClienteActionPerformed(evt);
@@ -128,19 +138,19 @@ public class IUCadastroVenda extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Cartão");
+        buttonGroup1.add(btnCartao);
+        btnCartao.setText("Cartão");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("PIX");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(btnPIX);
+        btnPIX.setText("PIX");
+        btnPIX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                btnPIXActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Dinheiro");
+        buttonGroup1.add(btnDinheiro);
+        btnDinheiro.setText("Dinheiro");
 
         txtChave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +170,18 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         jLabel11.setText("Numero");
 
+        jLabel12.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel12.setText("Transportadora");
+
+        txtTransp.setEnabled(false);
+
+        btnTransp.setText("Consulta Transportadora");
+        btnTransp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTranspActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -170,7 +192,7 @@ public class IUCadastroVenda extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(btnCartao)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -181,7 +203,7 @@ public class IUCadastroVenda extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
-                                            .addComponent(jRadioButton2))
+                                            .addComponent(btnPIX))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -192,13 +214,15 @@ public class IUCadastroVenda extends javax.swing.JFrame {
                                                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(27, 27, 27)
                                                 .addComponent(jLabel6)))))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(29, 29, 29)
-                                        .addComponent(jLabel10))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel10)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(txtGerente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtGerente)))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
@@ -206,25 +230,29 @@ public class IUCadastroVenda extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnConsultaGerente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnConsultaGerente)
+                                    .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(buttonLocalizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(50, 50, 50))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(buttonLocalizarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtTransp, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnTransp)))))
+                        .addGap(28, 28, 28))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton3)
+                        .addComponent(btnDinheiro)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -243,20 +271,21 @@ public class IUCadastroVenda extends javax.swing.JFrame {
                         .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(buttonLocalizarCliente)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton2)
+                        .addComponent(btnPIX)
                         .addComponent(jLabel8)
-                        .addComponent(txtChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addComponent(jLabel12)
+                            .addComponent(txtTransp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTransp)))
+                    .addComponent(jLabel7))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
+                    .addComponent(btnCartao)
                     .addComponent(jLabel9)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
@@ -264,7 +293,7 @@ public class IUCadastroVenda extends javax.swing.JFrame {
                     .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton3))
+                .addComponent(btnDinheiro))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtos"));
@@ -277,16 +306,14 @@ public class IUCadastroVenda extends javax.swing.JFrame {
             }
         });
 
-        jLabel22.setText("Descrição");
+        jLabel22.setText("Nome");
 
         jLabel23.setText("Valor Unitário");
 
-        jLabel24.setText("Quantidade");
-
-        jButton5.setText("Add");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        AddItem.setText("Add");
+        AddItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                AddItemActionPerformed(evt);
             }
         });
 
@@ -326,6 +353,8 @@ public class IUCadastroVenda extends javax.swing.JFrame {
             }
         });
 
+        jLabel24.setText("Quantidade");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -341,20 +370,19 @@ public class IUCadastroVenda extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
-                            .addComponent(textDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNomeProd, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel23)
-                            .addComponent(textValor, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
+                            .addComponent(textValor, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel23))
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel24)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(textQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(jButton5)
-                                .addGap(29, 29, 29)
-                                .addComponent(buttonLocalizarProduto2)))
+                            .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addComponent(AddItem)
+                        .addGap(29, 29, 29)
+                        .addComponent(buttonLocalizarProduto2)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
@@ -380,11 +408,11 @@ public class IUCadastroVenda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5)
-                    .addComponent(buttonLocalizarProduto2))
+                    .addComponent(AddItem)
+                    .addComponent(buttonLocalizarProduto2)
+                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -439,9 +467,9 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonLocalizarClienteActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void btnPIXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPIXActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_btnPIXActionPerformed
 
     private void txtChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChaveActionPerformed
         // TODO add your handling code here:
@@ -452,39 +480,42 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         String cod = textCodProduto.getText();
         Produto p = controlProd.buscaProdutoPorCodigo(Integer.parseInt(cod));
         if (p != null) {
-            textDescricao.setText(p.getDescricao());
+            txtNomeProd.setText(p.getNome());
             textValor.setText(Float.toString(p.getValor()));
         }else{
-            textDescricao.setText("");
+            txtNomeProd.setText("");
             textValor.setText("");
-            textQuantidade.setText("");
+            txtQuantidade.setText("");
         }
-        textQuantidade.setText("");
+        txtQuantidade.setText("");
     }//GEN-LAST:event_textCodProdutoFocusLost
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void AddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItemActionPerformed
         // TODO add your handling code here:
 
         Object linha[] = new Object[5];
         linha[0] = textCodProduto.getText();
-        linha[1] = textDescricao.getText();
+        linha[1] = txtNomeProd.getText();
         linha[2] = textValor.getText();
-        linha[3] = textQuantidade.getText();
-        Float subTotal = Float.parseFloat(textValor.getText()) * Float.parseFloat(textQuantidade.getText());
+        linha[3] = txtQuantidade.getText();
+        Float subTotal = Float.parseFloat(textValor.getText()) * Float.parseFloat(txtQuantidade.getText());
         linha[4] = subTotal;
         model.addRow(linha);
         total = total + subTotal;
         textTotal.setText(Float.toString(total));
-    }//GEN-LAST:event_jButton5ActionPerformed
+        itens.add(controlVenda.AddItemVenda(controlProd.buscaProdutoPorCodigo(Integer.parseInt(textCodProduto.getText())), Float.parseFloat(textValor.getText()), Integer.parseInt(txtQuantidade.getText())));
+        
+    }//GEN-LAST:event_AddItemActionPerformed
 
     private void buttonRemoverItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverItem2ActionPerformed
         // TODO add your handling code here:
         int index = tabela.getSelectedRow();
         if (index >=0){
             Float subTotal = (Float) model.getValueAt(index, 4);
-            model.removeRow(index);
+            model.removeRow(index); 
             total = total - subTotal;
             textTotal.setText(Float.toString(total));
+            itens.remove(index);
         }else{
             JOptionPane.showMessageDialog(null, "Selecione um Item");
         }
@@ -499,9 +530,10 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         Produto p = controlProd.buscaProdutoPorCodigo(Integer.parseInt(cod));
         if (p != null) {
             textCodProduto.setText(cod);
-            textDescricao.setText(p.getDescricao());
+            txtNomeProd.setText(p.getNome());
             textValor.setText(Float.toString(p.getValor()));
-            textQuantidade.setText("");
+            txtQuantidade.setText("");
+
         }
     }//GEN-LAST:event_buttonLocalizarProduto2ActionPerformed
 
@@ -510,26 +542,28 @@ public class IUCadastroVenda extends javax.swing.JFrame {
         int codigo = Integer.parseInt(txtCodigo.getText());
         int codCli = Integer.parseInt(txtCodCli.getText());
         int codGerente = Integer.parseInt(txtGerente.getText());
-        int qtdItens = tabela.getRowCount();
         String dataVenda = txtDataVenda.getText(); 
-        //LocalDate dateVenda =  LocalDate.parse(dataNasc,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
+        LocalDate dateVenda =  LocalDate.parse(dataVenda,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         
-        //controlVenda.addVenda(codigo, codCli, codGerente, LocalDate.MIN, LocalDate.MIN, itensDaVenda, total, TOP_ALIGNMENT, formaPagamento, transportadora);
-        int numero;
-        String codProduto;
-        float valor, quant;
+        if(btnPIX.isSelected()){
+        String chavePix = txtChave.getText(); 
+            
+        controlVenda.addVenda(codigo, controlUsuario.buscaClientePorCodigo(codCli), 
+        controlUsuario.buscaGerentePorCodigo(codGerente), dateVenda, itens, total, 
+        formaPagamento, controlVenda.buscaTransportadoraPorCodigo(codigo));
 
-        for(int i=0; i<qtdItens;i++){
-            numero = i+1;
-            codProduto = (String) model.getValueAt(i, 0);
-            valor = Float.parseFloat((String)  model.getValueAt(i, 2));
-            quant = Float.parseFloat((String)  model.getValueAt(i, 3));
-//            control.addItem(numero, codProduto, valor, quant);;
-        }
-//        control.gravarVenda();
+       
         JOptionPane.showMessageDialog(null, "Venda Salva com Sucesso");
+        }
     }//GEN-LAST:event_btnCadastraVendaActionPerformed
+
+    private void btnTranspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranspActionPerformed
+        IUConsultaTransportadora consuTrans = new IUConsultaTransportadora(null, true);
+        consuTrans.setVisible(true); 
+        
+        String codTransportadora = consuTrans.getCodTrans();
+        txtTransp.setText(codTransportadora);
+    }//GEN-LAST:event_btnTranspActionPerformed
 
     /**
      * @param args the command line arguments
@@ -567,15 +601,20 @@ public class IUCadastroVenda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddItem;
     private javax.swing.JButton btnCadastraVenda;
+    private javax.swing.JRadioButton btnCartao;
     private javax.swing.JButton btnConsultaGerente;
+    private javax.swing.JRadioButton btnDinheiro;
+    private javax.swing.JRadioButton btnPIX;
+    private javax.swing.JButton btnTransp;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonLocalizarCliente;
     private javax.swing.JButton buttonLocalizarProduto2;
     private javax.swing.JButton buttonRemoverItem2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -590,14 +629,9 @@ public class IUCadastroVenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tabela;
     private javax.swing.JTextField textCodProduto;
-    private javax.swing.JTextField textDescricao;
-    private javax.swing.JTextField textQuantidade;
     private javax.swing.JTextField textTotal;
     private javax.swing.JTextField textValor;
     private javax.swing.JTextField txtBandeira;
@@ -607,6 +641,9 @@ public class IUCadastroVenda extends javax.swing.JFrame {
     private javax.swing.JTextField txtDataVenda;
     private javax.swing.JTextField txtGerente;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNomeProd;
     private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtQuantidade;
+    private javax.swing.JTextField txtTransp;
     // End of variables declaration//GEN-END:variables
 }

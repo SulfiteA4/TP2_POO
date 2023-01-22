@@ -127,14 +127,20 @@ public class Venda implements Serializable{
     
     
     public float calcularValorTotal(){
-        return 0;
+        if(this.cliente instanceof Cli_Comum){
+            return valorTotal; 
+        }else if(this.cliente instanceof Cli_Ouro){
+             float desconto = (valorTotal * (3/100));  
+             return valorTotal - desconto;
+        }
+        return 0; 
     }
     
-    public void calcularDataEntrega(){
+    public LocalDate calcularDataEntrega(){
 
         int diasEntrega = (getTransportadora().getTempoDeEntrega()) ;
         dataDaEntrega = dataDaEntrega.plusDays(diasEntrega);
-        
+        return dataDaEntrega; 
     }
     
 //    necessário implementar
