@@ -525,9 +525,9 @@ public class IUCadastroVenda extends javax.swing.JFrame {
             codProduto = (String) model.getValueAt(i, 0);
             valor = Float.parseFloat((String)  model.getValueAt(i, 2));
             quant = Float.parseFloat((String)  model.getValueAt(i, 3));
-            control.addItem(numero, codProduto, valor, quant);
+//            control.addItem(numero, codProduto, valor, quant);;
         }
-        control.gravarVenda();
+//        control.gravarVenda();
         JOptionPane.showMessageDialog(null, "Venda Salva com Sucesso");
     }//GEN-LAST:event_btnCadastraVendaActionPerformed
 
