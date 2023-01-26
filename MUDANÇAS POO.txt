@@ -1,0 +1,3 @@
+- Feito em Java 
+- Alunos: Rafael Yudi & Lucas Hungaro. 
+- Colocar sempre os valores monetários da seguinte maneira "00.00", sempre com "." e duas casas após ele. 

@@ -136,10 +136,10 @@ public class Venda implements Serializable{
         return 0; 
     }
     
-    public LocalDate calcularDataEntrega(){
+    public LocalDate calcularDataEntrega(LocalDate dataVenda){
 
         int diasEntrega = (getTransportadora().getTempoDeEntrega()) ;
-        dataDaEntrega = dataDaEntrega.plusDays(diasEntrega);
+        dataDaEntrega = dataVenda.plusDays(diasEntrega);
         return dataDaEntrega; 
     }
     

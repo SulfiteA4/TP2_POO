@@ -25,7 +25,7 @@ public class IUConsultaProduto extends javax.swing.JDialog {
         initComponents();
         codProduto= null;
         control = new ControladorProduto();
-        String columns[] = {"Código","Nome"};
+        String columns[] = {"Código","Nome","Descrição","Data Fabricação", "Valor", "Fabricante"};
         model = new DefaultTableModel(columns, 0);
         tableProdutos.setModel(model);
         Object [][] linha = control.relatorioTodosProdutos();
@@ -55,7 +55,7 @@ public class IUConsultaProduto extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Nome"
+                "Código", "Nome", "Descrição", "Data Fabricação", "Valor", "Fabricante"
             }
         ));
         jScrollPane1.setViewportView(tableProdutos);
@@ -81,21 +81,21 @@ public class IUConsultaProduto extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(134, Short.MAX_VALUE)
+                .addGap(256, 256, 256)
                 .addComponent(btnSelecionar)
-                .addGap(85, 85, 85)
+                .addGap(213, 213, 213)
                 .addComponent(btnFechar)
-                .addGap(132, 132, 132))
+                .addContainerGap(245, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(438, Short.MAX_VALUE)
+                .addContainerGap(447, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSelecionar)
                     .addComponent(btnFechar))
@@ -104,10 +104,11 @@ public class IUConsultaProduto extends javax.swing.JDialog {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(23, 23, 23)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(75, Short.MAX_VALUE)))
+                    .addContainerGap(84, Short.MAX_VALUE)))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed

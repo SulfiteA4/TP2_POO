@@ -26,7 +26,7 @@ public class IUConsultaFabricante extends javax.swing.JDialog {
         
         codFabricante = null;
         control = new ControladorProduto();
-        String columns[] = {"Código","Nome"};
+        String columns[] = {"Código","Nome","CNPj","Descrição","Email","Endereço,Telefone"};
         model = new DefaultTableModel(columns, 0);
         tableFabricantees.setModel(model);
         Object [][] linha = control.relatorioTodosFabricantes();
@@ -57,7 +57,7 @@ public class IUConsultaFabricante extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Nome"
+                "Código", "Nome", "CNPJ", "Descrição", "Email", "Endereço", "Telefone"
             }
         ));
         jScrollPane1.setViewportView(tableFabricantees);
@@ -83,25 +83,25 @@ public class IUConsultaFabricante extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(127, 127, 127)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(239, 239, 239)
                 .addComponent(btnSelecionar)
-                .addGap(85, 85, 85)
+                .addGap(177, 177, 177)
                 .addComponent(btnFechar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSelecionar)
                     .addComponent(btnFechar))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         pack();

@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Models.Cli_Comum;
 import Models.Cli_Ouro;
 import Models.Cliente;
 import Models.ComercioEletronico;
@@ -109,6 +110,32 @@ public class ControladorUsuario {
         return(linha);
     }
     
+        public Object[][] relatorioClientesComum(){
+        int cont = 0;
+        Object[][] linha = new Object[getClienteComum().size()][9];
+        
+        Iterator<Cliente> iterator = getClienteComum().iterator();
+        
+        while (iterator.hasNext()) {
+            
+            Cliente cliente = iterator.next();
+            
+            linha[cont][0] = cliente.getCodigo();
+            linha[cont][1] = cliente.getNome();
+            linha[cont][2] = cliente.getCpf();
+            linha[cont][3] = cliente.getRg();
+            linha[cont][4] = cliente.getDataNascimento();
+            linha[cont][5] = cliente.getEndereco();
+            linha[cont][6] = cliente.getCep();
+            linha[cont][7] = cliente.getEmail();
+            linha[cont][8] = cliente.getDataCadastro();
+            cont++;
+        }
+        
+        return(linha);
+    }
+    
+    
     public ArrayList<Cliente> getClienteOuro(){
         IOArquivos arq = new IOArquivos();
         Iterator iterator = arq.lerClientes().iterator();
@@ -118,6 +145,21 @@ public class ControladorUsuario {
             Cliente cliente = (Cliente) iterator.next();
             
             if(cliente instanceof Cli_Ouro){
+                clientes.add(cliente);
+            }
+        }
+        return clientes;
+    }
+    
+        public ArrayList<Cliente> getClienteComum(){
+        IOArquivos arq = new IOArquivos();
+        Iterator iterator = arq.lerClientes().iterator();
+        ArrayList<Cliente> clientes = new ArrayList();
+        
+        while(iterator.hasNext()){
+            Cliente cliente = (Cliente) iterator.next();
+            
+            if(cliente instanceof Cli_Comum){
                 clientes.add(cliente);
             }
         }
@@ -170,6 +212,17 @@ public class ControladorUsuario {
         int cont;
         try{
             cont = getClienteOuro().size();
+        }catch(NullPointerException e){
+            cont = 0;
+        }
+        return(cont);
+    }
+    
+    
+    public int retornaQuantidadeClientesComuns(){
+        int cont;
+        try{
+            cont = getClienteComum().size();
         }catch(NullPointerException e){
             cont = 0;
         }

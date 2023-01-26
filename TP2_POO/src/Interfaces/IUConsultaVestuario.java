@@ -5,7 +5,6 @@
 package Interfaces;
 
 import Controller.ControladorProduto;
-import Controller.ControladorUsuario;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,25 +12,25 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Martines
  */
-public class IUConsultaCliente extends javax.swing.JDialog {
-    
-        private DefaultTableModel model;
-        private ControladorUsuario control;
-        private String codCliente;
+public class IUConsultaVestuario extends javax.swing.JDialog {
+
+    private DefaultTableModel model;
+    private ControladorProduto control;
+    private String codProduto;
     /**
-     * Creates new form IUConsultaCliente
+     * Creates new form IUConsultaMoveis
      */
-    public IUConsultaCliente(java.awt.Frame parent, boolean modal) {
+    public IUConsultaVestuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-       
-        codCliente = null;
-        control = new ControladorUsuario();
-        String columns[] = {"Código","Nome","CPF", "RG", "Data Nascimento", "Endereço", "CEP", "Email","Data Cadastro"};
+        
+        codProduto= null;
+        control = new ControladorProduto();
+        String columns[] = {"Código","Nome","Descrição","Data Fabricação", "Valor", "Fabricante"};
         model = new DefaultTableModel(columns, 0);
-        tableClientes.setModel(model);
-        Object [][] linha = control.relatorioTodosClientes();
-        for(int cont = 0; cont < control.retornaQuantidadeClientes(); cont++){
+        tableMoveis.setModel(model);
+        Object [][] linha = control.relatorioVestuario();
+        for(int cont = 0; cont < control.retornaQuantidadeVestuario(); cont++){
             model.addRow(linha[cont]);
         }
     }
@@ -46,21 +45,21 @@ public class IUConsultaCliente extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableClientes = new javax.swing.JTable();
+        tableMoveis = new javax.swing.JTable();
         btnSelecionar = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tableClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tableMoveis.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nome", "CPF", "RG", "Data Nascimento", "Endereço", "CEP", "Email", "Data Cadastro"
+                "Código", "Nome", "Descrição", "Data Fabricação", "Valor", "Fabricante"
             }
         ));
-        jScrollPane1.setViewportView(tableClientes);
+        jScrollPane1.setViewportView(tableMoveis);
 
         btnSelecionar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnSelecionar.setText("Selecionar");
@@ -83,30 +82,27 @@ public class IUConsultaCliente extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(293, 293, 293)
-                .addComponent(btnSelecionar)
-                .addGap(130, 130, 130)
-                .addComponent(btnFechar)
-                .addContainerGap(358, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(15, 15, 15)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE)
-                    .addGap(16, 16, 16)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(btnSelecionar)
+                        .addGap(193, 193, 193)
+                        .addComponent(btnFechar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(439, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSelecionar)
-                    .addComponent(btnFechar))
-                .addGap(59, 59, 59))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(12, 12, 12)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(119, Short.MAX_VALUE)))
+                    .addComponent(btnFechar)
+                    .addComponent(btnSelecionar))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,24 +110,20 @@ public class IUConsultaCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
-        int index = tableClientes.getSelectedRow();
+        int index = tableMoveis.getSelectedRow();
         if( index >= 0){
-            codCliente = Integer.toString((Integer)model.getValueAt(index, 0));
+            codProduto = Integer.toString((Integer)model.getValueAt(index, 0));
             setVisible(false);
         }else{
-            JOptionPane.showMessageDialog(null, "Selecione um Cliente!");
+            JOptionPane.showMessageDialog(null, "Selecione um Fabricante!");
         }
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        codCliente = null;
+        codProduto = null;
         setVisible(false);
     }//GEN-LAST:event_btnFecharActionPerformed
 
-    
-    public String getCodCli(){
-        return this.codCliente;
-    }
     /**
      * @param args the command line arguments
      */
@@ -149,20 +141,23 @@ public class IUConsultaCliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IUConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUConsultaVestuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IUConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUConsultaVestuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IUConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUConsultaVestuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IUConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUConsultaVestuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                IUConsultaCliente dialog = new IUConsultaCliente(new javax.swing.JFrame(), true);
+                IUConsultaVestuario dialog = new IUConsultaVestuario(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -178,6 +173,6 @@ public class IUConsultaCliente extends javax.swing.JDialog {
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnSelecionar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableClientes;
+    private javax.swing.JTable tableMoveis;
     // End of variables declaration//GEN-END:variables
 }

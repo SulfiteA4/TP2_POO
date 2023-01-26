@@ -26,7 +26,7 @@ public class IUConsultaGerente extends javax.swing.JDialog {
         
         codGerente = null;
         control = new ControladorUsuario();
-        String columns[] = {"Código","Nome"};
+        String columns[] = {"Código","Nome","CPF", "RG", "Data Nascimento", "Endereço", "CEP", "Email","Salario","Pis","DataAdmissao"};
         model = new DefaultTableModel(columns, 0);
         tableGerentes.setModel(model);
         Object [][] linha = control.relatorioTodosGerentes();
@@ -56,7 +56,7 @@ public class IUConsultaGerente extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Nome"
+                "Código", "Nome", "RG", "CPF", "Data Nascimento", "Endereço", "CEP", "Email", "Salário", "Pis", "Data Admissão"
             }
         ));
         jScrollPane1.setViewportView(tableGerentes);
@@ -82,33 +82,34 @@ public class IUConsultaGerente extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
+                .addGap(301, 301, 301)
                 .addComponent(btnSelecionar)
-                .addGap(85, 85, 85)
+                .addGap(131, 131, 131)
                 .addComponent(btnFechar)
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(362, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(8, 8, 8)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
                     .addGap(8, 8, 8)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(444, Short.MAX_VALUE)
+                .addContainerGap(475, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSelecionar)
                     .addComponent(btnFechar))
-                .addGap(36, 36, 36))
+                .addGap(58, 58, 58))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(24, 24, 24)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(89, Short.MAX_VALUE)))
+                    .addContainerGap(142, Short.MAX_VALUE)))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed

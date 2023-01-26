@@ -342,15 +342,15 @@ public class IUCadastroCliente extends javax.swing.JFrame {
                 ControladorUsuario control = new ControladorUsuario(); 
 
                     if(btnClienteComum.isSelected()){
-                        String tipo = "ClienteComum"; 
+                        String tipo = "Cliente Comum"; 
                         control.addCliente(dateCad, codigo, nome, cpf, rg, dateNasc, endereco, cep, email, tipo);
                         setVisible(false); 
-                        //control.getTodosClientes();
+                        
                     }else{
                         String tipo = "Cliente Ouro"; 
                         control.addCliente(dateCad, codigo, nome, cpf, rg, dateNasc, endereco, cep, email, tipo);
                         setVisible(false); 
-                        //control.getTodosClientes();
+                     
                     }        
             }
         }

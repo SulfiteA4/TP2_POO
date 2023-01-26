@@ -426,7 +426,7 @@ public class IUCadastroGerente extends javax.swing.JFrame {
 
             ControladorUsuario control = new ControladorUsuario(); 
             control.addGerente(salario, PIS, dateAdm, codigo, nome, cpf, rg, dateNasc, endereco, cep, email);
-            
+            setVisible(false); 
         }
     }//GEN-LAST:event_btnCadastroGerenteActionPerformed
 
