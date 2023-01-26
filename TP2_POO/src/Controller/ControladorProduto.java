@@ -317,7 +317,21 @@ public class ControladorProduto {
         }
         return moveis;
     }
- 
+    
+    
+    public int retornaQuantidadeMoveis(){
+      
+        int cont;
+        try{
+            cont = getMoveis().size();
+        }catch(NullPointerException e){
+            cont = 0;
+        }
+        return(cont);
+    }
+    
+    
+    
     public ArrayList<Produto> getEletrodomesticos(){
         IOArquivos arq = new IOArquivos();
         Iterator iterator = arq.lerProdutos().iterator();
@@ -331,6 +345,17 @@ public class ControladorProduto {
             }
         }
         return eletrodomestico;
+    }
+    
+        public int retornaQuantidadeEletrodomesticos(){
+      
+        int cont;
+        try{
+            cont = getEletrodomesticos().size();
+        }catch(NullPointerException e){
+            cont = 0;
+        }
+        return(cont);
     }
     
 
@@ -350,6 +375,19 @@ public class ControladorProduto {
         return eletronicos;
     }
     
+        public int retornaQuantidadeEletronicos(){
+      
+        int cont;
+        try{
+            cont = getMoveis().size();
+        }catch(NullPointerException e){
+            cont = 0;
+        }
+        return(cont);
+    }
+    
+    
+    
     public ArrayList<Produto> getVestuario(){
         IOArquivos arq = new IOArquivos();
         Iterator iterator = arq.lerProdutos().iterator();
@@ -365,6 +403,17 @@ public class ControladorProduto {
         return vestuario;
     }
     
- 
+    
+        public int retornaQuantidadeVestuario(){
+      
+        int cont;
+        try{
+            cont = getVestuario().size();
+        }catch(NullPointerException e){
+            cont = 0;
+        }
+        return(cont);
+    }
+    
     
 }

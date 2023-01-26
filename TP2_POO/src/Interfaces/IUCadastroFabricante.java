@@ -299,6 +299,7 @@ public class IUCadastroFabricante extends javax.swing.JFrame {
                
                 ControladorProduto control = new ControladorProduto(); 
                 control.addFabricante(codigo, cnpj, nome, desc, email, tel, endereco);
+                setVisible(false); 
                 
         }
     }//GEN-LAST:event_btnCadastraFabricanteActionPerformed

@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Martines
  */
-public class IUConsultaCliente extends javax.swing.JDialog {
+public class IUConsultaClienteComum extends javax.swing.JDialog {
     
         private DefaultTableModel model;
         private ControladorUsuario control;
@@ -21,7 +21,7 @@ public class IUConsultaCliente extends javax.swing.JDialog {
     /**
      * Creates new form IUConsultaCliente
      */
-    public IUConsultaCliente(java.awt.Frame parent, boolean modal) {
+    public IUConsultaClienteComum(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
        
@@ -30,8 +30,8 @@ public class IUConsultaCliente extends javax.swing.JDialog {
         String columns[] = {"Código","Nome","CPF", "RG", "Data Nascimento", "Endereço", "CEP", "Email","Data Cadastro"};
         model = new DefaultTableModel(columns, 0);
         tableClientes.setModel(model);
-        Object [][] linha = control.relatorioTodosClientes();
-        for(int cont = 0; cont < control.retornaQuantidadeClientes(); cont++){
+        Object [][] linha = control.relatorioClientesComum();
+        for(int cont = 0; cont < control.retornaQuantidadeClientesComuns(); cont++){
             model.addRow(linha[cont]);
         }
     }
@@ -149,20 +149,21 @@ public class IUConsultaCliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IUConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUConsultaClienteComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IUConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUConsultaClienteComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IUConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUConsultaClienteComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IUConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUConsultaClienteComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                IUConsultaCliente dialog = new IUConsultaCliente(new javax.swing.JFrame(), true);
+                IUConsultaClienteComum dialog = new IUConsultaClienteComum(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

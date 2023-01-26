@@ -345,19 +345,19 @@ public class IUCadastroProduto extends javax.swing.JFrame {
                     ControladorProduto control = new ControladorProduto();
                     control.AddProduto(codigo, nome, desc, dateFabri, valor, control.buscaFabrincantePorCodigo(codFabricante), tipo);
                     setVisible(false);
-                    System.out.println(control.getEletronicos());
+                    //System.out.println(control.getEletronicos());
                 }else if(btnVestuario.isSelected()){
                      String tipo = "VESTUARIO"; 
                      ControladorProduto control = new ControladorProduto();
                      control.AddProduto(codigo, nome, desc, dateFabri, valor, control.buscaFabrincantePorCodigo(codFabricante), tipo);
                      setVisible(false);
-                     System.out.println(control.getVestuario());
+                    // System.out.println(control.getVestuario());
                 }else{
                     String tipo = "MOVEL"; 
                     ControladorProduto control = new ControladorProduto();
                     control.AddProduto(codigo, nome, desc, dateFabri, valor, control.buscaFabrincantePorCodigo(codFabricante), tipo);
                     setVisible(false);
-                    System.out.println(control.getMoveis());
+                    //System.out.println(control.getMoveis());
                 }
 
 
